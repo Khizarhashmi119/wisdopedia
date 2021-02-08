@@ -1,0 +1,12 @@
+.dashboard-blogs-list {
+  border: 1px solid #c1c1c1;
+  box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+  border-radius: 0.25rem;
+  list-style-type: none;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.dashboard-blogs-list .dashboard-blog:not(:last-child) {
+  border-bottom: 1px solid #c1c1c1;
+}

@@ -1,0 +1,22 @@
+.quote-block {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border-radius: 0.25rem;
+  padding: 10%;
+  position: relative;
+  margin: 1rem 0;
+  z-index: -1;
+}
+
+.quote-body {
+  color: #fff;
+}
+
+.quote {
+  margin: 1rem 0;
+}
+
+.quote-author {
+  text-align: right;
+}

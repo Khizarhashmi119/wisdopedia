@@ -1,0 +1,48 @@
+import { config } from "dotenv";
+import express from "express";
+import morgan from "morgan";
+import { join, dirname } from "path";
+import { fileURLToPath } from "url";
+
+import connectDB from "./db.js";
+import authRoutes from "./routes/auth-routes.js";
+import blogRoutes from "./routes/blog-routes.js";
+import categoryRoutes from "./routes/category-routes.js";
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const app = express();
+
+//* Set enviroment variables
+config();
+//* Connect database.
+connectDB();
+
+//* Middlewares.
+app.use(express.json({ extended: false }));
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
+
+app.get("/", (req, res) => {
+  res.json({ msg: "API is running..." });
+});
+
+//* API routes.
+app.use("/api/auth", authRoutes);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/categories", categoryRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(join(__dirname, "client", "build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(join(__dirname, "client", "build", "index.html"));
+  });
+}
+
+app.listen(
+  process.env.PORT,
+  console.log(
+    `Server is running at ${process.env.NODE_ENV} mode at port ${process.env.PORT}`
+  )
+);

@@ -1,0 +1,25 @@
+.dashboard-page {
+  border-bottom: 1px solid #c1c1c1;
+  padding: 3%;
+}
+
+.blog-section {
+  margin: 1rem auto;
+  padding: 1rem 0;
+}
+
+.add-blog-btn {
+  border-color: #fc7978;
+  background-color: #fc7978;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: -2px 7px 21px -10px rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.6s linear;
+}
+
+.add-blog-btn:hover {
+  background-color: #fc5f5f;
+}

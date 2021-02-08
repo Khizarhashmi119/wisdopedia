@@ -1,0 +1,31 @@
+{
+  "name": "wisdopedia",
+  "version": "1.0.0",
+  "main": "server.js",
+  "author": "Mohd. Khizar Hashmi",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start": "cross-env NODE_ENV='production' node server",
+    "server": "cross-env NODE_ENV='development' nodemon server",
+    "client": "cd client && yarn start",
+    "mern": "concurrently -n 'server,client' -c 'yellow,blue' \"yarn server\" \"yarn client\""
+  },
+  "dependencies": {
+    "commander": "^6.2.1",
+    "cross-env": "^7.0.3",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.0",
+    "gravatar": "^1.8.1",
+    "inquirer": "^7.3.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.24",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4"
+  }
+}

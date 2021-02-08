@@ -1,0 +1,87 @@
+.blog-detail-page {
+  border-bottom: 1px solid #c1c1c1;
+  padding: 3% 8%;
+}
+
+.blog-main-image {
+  border-radius: 0.25rem;
+  height: 400px;
+  margin-top: 2rem;
+  object-fit: cover;
+  width: 100%;
+}
+
+.blog-author-name,
+.blog-category-name {
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.col-1 {
+  width: 750px;
+}
+
+.blog-title {
+  margin: 1rem 0;
+}
+
+.blog-body {
+  margin: 1rem 0;
+}
+
+.share-btn-container {
+  background: #fff;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 50%;
+  left: 0%;
+  transform: translateY(-50%);
+}
+
+.share-btn-container a i {
+  font-size: 1.5rem;
+}
+
+.share-btn-container a {
+  margin: 12px 0;
+  transition: 500ms;
+}
+
+.share-btn-container a:hover {
+  transform: scale(1.2);
+}
+
+.share-btn-container .fa-facebook {
+  color: #3b5998;
+}
+
+.share-btn-container .fa-twitter {
+  color: #1da1f2;
+}
+
+.share-btn-container .fa-linkedin {
+  color: #0077b5;
+}
+
+.share-btn-container .fa-pinterest {
+  color: #bd081c;
+}
+
+.share-btn-container .fa-whatsapp {
+  color: #25d366;
+}
+
+.col-2 {
+  width: 350px;
+}

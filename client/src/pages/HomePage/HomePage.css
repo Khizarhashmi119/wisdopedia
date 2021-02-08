@@ -1,0 +1,17 @@
+.home-page-blogs-preview-section {
+  border-bottom: 1px solid #c1c1c1;
+  padding: 3% 8%;
+  text-align: center;
+}
+
+.quote-section {
+  border-bottom: 1px solid #c1c1c1;
+  padding: 5% 8%;
+  text-align: center;
+}
+
+.blogs-preview-section-title,
+.quote-section-title {
+  color: #2a2a2a;
+  margin: 1rem 0 2rem;
+}
