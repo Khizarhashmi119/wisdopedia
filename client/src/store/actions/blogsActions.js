@@ -8,6 +8,7 @@ const getBlogsAction = () => {
       dispatch({ type: "GET_BLOGS_SUCCESS", payload: response.data });
     } catch (err) {
       console.error(err);
+      dispatch({ type: "GET_BLOGS_FAIL" });
     }
   };
 };

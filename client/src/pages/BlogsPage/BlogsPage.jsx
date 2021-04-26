@@ -27,7 +27,11 @@ const BlogsPage = () => {
         onChange={handleChange}
       />
       {!isLoading ? (
-        <BlogsPreviewList blogs={filteredBlogs} />
+        blogs.length !== 0 ? (
+          <BlogsPreviewList blogs={filteredBlogs} />
+        ) : (
+          <h2 className="message">No blog yet.</h2>
+        )
       ) : (
         <h2>Loading...</h2>
       )}

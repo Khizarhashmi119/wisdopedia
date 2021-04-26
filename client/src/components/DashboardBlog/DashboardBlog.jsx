@@ -10,7 +10,7 @@ const DashboardBlog = ({ history, id, title, index }) => {
   // const dispatch = useDispatch();
 
   const handleClick1 = () => {
-    history.push(`/edit-blog/${id}`);
+    history.push(`/blogs/${id}/update`);
   };
 
   const handleClick2 = () => {

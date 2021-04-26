@@ -9,6 +9,7 @@ const blogsReducer = (state = initState, action) => {
 
   switch (type) {
     case "GET_BLOGS":
+    case "ADD_COMMENT":
       return {
         ...state,
         isLoading: true,
@@ -21,14 +22,6 @@ const blogsReducer = (state = initState, action) => {
         blogs: payload,
         errors: [],
       };
-    case "GET_BLOGS_FAIL":
-      return {
-        ...state,
-        isLoading: false,
-        errors: payload,
-      };
-    case "ADD_COMMENT":
-      return { ...state, isLoading: true };
     case "ADD_COMMENT_SUCCESS":
       const { blogId, comment } = payload;
       const blog = state.blogs.find(({ _id }) => _id === blogId);
@@ -41,8 +34,13 @@ const blogsReducer = (state = initState, action) => {
         isLoading: false,
         blogs,
       };
+    case "GET_BLOGS_FAIL":
     case "ADD_COMMENT_FAIL":
-      return { ...state, isLoading: false };
+      return {
+        ...state,
+        isLoading: false,
+        errors: payload,
+      };
     default:
       return state;
   }

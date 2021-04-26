@@ -43,9 +43,7 @@ const addCategory = async (req, res) => {
 
     await category.save();
 
-    return res
-      .status(200)
-      .json({ messages: [{ msg: "Category has been successfully saved." }] });
+    return res.status(200).json(category);
   } catch (err) {
     console.error(err.message);
     return res

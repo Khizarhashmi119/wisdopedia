@@ -6,11 +6,11 @@ import DashboardBlog from "../DashboardBlog/DashboardBlog";
 import "./DashboardBlogsList.css";
 
 const DashboardBlogsList = () => {
-  const { blogs, loading } = useSelector((state) => state.blogsState);
+  const { blogs, isLoading } = useSelector((state) => state.blogsState);
 
   return (
     <Fragment>
-      {!loading ? (
+      {!isLoading ? (
         blogs.length !== 0 ? (
           <ul className="dashboard-blogs-list">
             {blogs.map(({ _id, ...otherProps }, index) => (

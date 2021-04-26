@@ -14,7 +14,13 @@ const HomePage = () => {
       <div className="home-page-blogs-preview-section">
         <h3 className="blogs-preview-section-title">Recents blogs</h3>
         {!isLoading ? (
-          <BlogsPreviewList blogs={blogs.filter((blog, index) => index <= 2)} />
+          blogs.length !== 0 ? (
+            <BlogsPreviewList
+              blogs={blogs.filter((blog, index) => index <= 2)}
+            />
+          ) : (
+            <h2 className="message">No blog yet.</h2>
+          )
         ) : (
           <h2>Loading...</h2>
         )}
