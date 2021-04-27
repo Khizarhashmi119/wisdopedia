@@ -5,7 +5,7 @@ const signInAdminAction = (email, password) => {
     try {
       dispatch({ type: "SIGN_IN_ADMIN" });
 
-      const response = await axios.post("/api/auth/signin", {
+      const response = await axios.post("/api/v1/auth/signin", {
         email,
         password,
       });

@@ -42,7 +42,6 @@ const blogSchema = new mongoose.Schema(
       trim: true,
       maxlength: 32,
     },
-    comments: [commentSchema],
   },
   { timestamps: true }
 );

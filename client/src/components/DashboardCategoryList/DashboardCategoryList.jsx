@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
 
 import DashboardCategory from "../DashboardCategory/DashboardCategory";
@@ -15,15 +15,15 @@ const DashboardCategoryList = () => {
       {!isloading ? (
         categories.length !== 0 ? (
           <ul className="dashboard-categories-list">
-            {categories.map(({ _id, ...otherProps }) => (
-              <DashboardCategory key={_id} id={_id} {...otherProps} />
+            {categories.map((category) => (
+              <DashboardCategory key={category._id} category={category} />
             ))}
           </ul>
         ) : (
-          <h2 className="message">No skill yet.</h2>
+          <h2 className="message">No category yet.</h2>
         )
       ) : (
-        <h2 className="message">Loading...</h2>
+        <h2 className="loading-text">Loading...</h2>
       )}
     </Fragment>
   );

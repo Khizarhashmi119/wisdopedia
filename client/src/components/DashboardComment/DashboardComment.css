@@ -1,0 +1,31 @@
+.dashboard-comment {
+  background-color: #fc7978;
+  border-radius: 0.25rem;
+  box-shadow: -2px 7px 21px -10px rgba(0, 0, 0, 0.75);
+  color: #fff;
+  min-height: 200px;
+  padding: 0.5rem 1rem;
+  position: relative;
+  transition: background-color 0.6s linear;
+  margin: 1rem;
+  width: 380px;
+}
+
+.dashboard-comment:hover {
+  background-color: #fc5f5f;
+}
+
+.dashboard-delete-comment-btn {
+  background-color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  bottom: 10px;
+  box-shadow: -2px 7px 21px -10px rgba(0, 0, 0, 0.75);
+  color: #fc7978;
+  font-size: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  right: 10px;
+  transition: background-color 0.6s linear;
+}

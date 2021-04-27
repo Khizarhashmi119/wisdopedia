@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 
 import BlogsPreviewList from "../../components/BlogsPreviewList/BlogsPreviewList";
@@ -22,7 +21,7 @@ const HomePage = () => {
             <h2 className="message">No blog yet.</h2>
           )
         ) : (
-          <h2>Loading...</h2>
+          <h2 className="loading-text">Loading...</h2>
         )}
       </div>
       <div className="quote-section">

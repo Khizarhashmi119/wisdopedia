@@ -1,4 +1,4 @@
-import React from "react";
+import { useHistory } from "react-router-dom";
 
 import AddCategoryForm from "../../components/AddCategoryForm/AddCategoryForm";
 import DashboardCategoryList from "../../components/DashboardCategoryList/DashboardCategoryList";
@@ -7,9 +7,11 @@ import DashboardCommentsList from "../../components/DashboardCommentList/Dashboa
 
 import "./DashboardPage.css";
 
-const DashboardPage = ({ history }) => {
+const DashboardPage = () => {
+  const { push } = useHistory();
+
   const handleClick = () => {
-    history.push("/blogs/add");
+    push("/blogs/add");
   };
 
   return (
@@ -19,7 +21,7 @@ const DashboardPage = ({ history }) => {
         <DashboardCategoryList />
       </div>
 
-      <div className="blog-section">
+      <div className="blogs-section">
         <button className="add-blog-btn" onClick={handleClick}>
           <i className="fas fa-plus"></i> Blog
         </button>

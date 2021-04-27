@@ -1,15 +1,19 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 
 import { deleteCategoryAction } from "../../store/actions/categoriesActions";
 
 import "./DashboardCategory.css";
 
-const DashboardCategory = ({ id, name }) => {
+const DashboardCategory = ({ category: { _id, name } }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(deleteCategoryAction(id));
+    const answer = window.confirm(
+      `Do you want to permanently delete ${name} category ?`
+    );
+    if (answer) {
+      dispatch(deleteCategoryAction(_id));
+    }
   };
 
   return (

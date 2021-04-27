@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { Fragment } from "react";
 import { useSelector } from "react-redux";
 
 import DashboardBlog from "../DashboardBlog/DashboardBlog";
@@ -13,8 +13,8 @@ const DashboardBlogsList = () => {
       {!isLoading ? (
         blogs.length !== 0 ? (
           <ul className="dashboard-blogs-list">
-            {blogs.map(({ _id, ...otherProps }, index) => (
-              <DashboardBlog key={_id} id={_id} {...otherProps} index={index} />
+            {blogs.map((blog, index) => (
+              <DashboardBlog key={blog._id} blog={blog} index={index} />
             ))}
           </ul>
         ) : (

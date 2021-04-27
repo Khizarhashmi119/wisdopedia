@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
+
 import BlogsPreviewList from "../../components/BlogsPreviewList/BlogsPreviewList";
 
 import "./BlogsPage.css";
@@ -33,7 +34,7 @@ const BlogsPage = () => {
           <h2 className="message">No blog yet.</h2>
         )
       ) : (
-        <h2>Loading...</h2>
+        <h2 className="loading-text">Loading...</h2>
       )}
     </div>
   );

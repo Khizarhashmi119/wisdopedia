@@ -3,7 +3,7 @@ import { validationResult } from "express-validator";
 import Category from "../models/Category.js";
 import Blog from "../models/Blog.js";
 
-//* @route  GET /api/categories
+//* @route  GET /api/v1/categories
 //* @desc   Get categories.
 //* @access public
 const getCategories = async (req, res) => {
@@ -23,7 +23,7 @@ const getCategories = async (req, res) => {
   }
 };
 
-//* @route  POST /api/categories
+//* @route  POST /api/v1/categories
 //* @desc   Add category.
 //* @access private
 const addCategory = async (req, res) => {
@@ -52,7 +52,7 @@ const addCategory = async (req, res) => {
   }
 };
 
-//* @route  DELETE /api/categories/:categoryId
+//* @route  DELETE /api/v1/categories/:categoryId
 //* @desc   Delete category.
 //* @access private
 const deleteCategory = async (req, res) => {
@@ -72,7 +72,7 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-//* @route  GET /api/categories/:categoryId/blogs
+//* @route  GET /api/v1/categories/:categoryId/blogs
 //* @desc   Get blogs of specific category.
 //* @access public
 const getCategoryBlogs = async (req, res) => {

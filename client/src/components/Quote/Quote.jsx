@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 import "./Quote.css";
@@ -31,7 +31,7 @@ const Quote = () => {
           </span>
         </div>
       ) : (
-        <h4>Loading...</h4>
+        <h4 className="loading-text">Loading...</h4>
       )}
     </div>
   );

@@ -5,6 +5,7 @@
   margin: 0.8rem;
   max-width: 350px;
   position: relative;
+  text-align: left;
 }
 
 .bg-img {
@@ -36,14 +37,15 @@
   border-radius: 0.25rem;
   color: #fff;
   height: 100%;
-  padding: 5%;
+  padding: 1.5rem;
   width: 100%;
 }
 
 .blog-preview-title {
-  margin: 1rem 0;
+  margin-bottom: 0.7rem;
+  text-align: center;
 }
 
 .blog-preview-description {
-  margin: 1rem 0;
+  margin-top: 0.7rem;
 }
