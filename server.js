@@ -5,9 +5,10 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 import connectDB from "./db.js";
-import authRoutes from "./routes/auth-routes.js";
-import blogRoutes from "./routes/blog-routes.js";
-import categoryRoutes from "./routes/category-routes.js";
+import authRoutes from "./routes/api/v1/auth-routes.js";
+import blogRoutes from "./routes/api/v1/blog-routes.js";
+import commentRoutes from "./routes/api/v1/comment-routes.js";
+import categoryRoutes from "./routes/api/v1/category-routes.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -28,9 +29,10 @@ app.get("/", (req, res) => {
 });
 
 //* API routes.
-app.use("/api/auth", authRoutes);
-app.use("/api/blogs", blogRoutes);
-app.use("/api/categories", categoryRoutes);
+app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/blogs", blogRoutes);
+app.use("/api/v1/comments", commentRoutes);
+app.use("/api/v1/categories", categoryRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(join(__dirname, "client", "build")));
@@ -40,8 +42,7 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(
-  process.env.PORT,
+app.listen(process.env.PORT, () =>
   console.log(
     `Server is running at ${process.env.NODE_ENV} mode at port ${process.env.PORT}`
   )

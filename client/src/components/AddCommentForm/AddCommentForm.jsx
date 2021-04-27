@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addCommentAction } from "../../store/actions/blogsActions";
+import { addCommentAction } from "../../store/actions/commentsActions";
 
 import "./AddCommentForm.css";
 
@@ -13,6 +13,7 @@ const AddCommentForm = ({ blogId }) => {
     email: "",
     text: "",
   });
+  const { name, email, text } = commentFormData;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,22 +25,14 @@ const AddCommentForm = ({ blogId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    dispatch(
-      addCommentAction(
-        blogId,
-        commentFormData.name,
-        commentFormData.email,
-        commentFormData.text
-      )
-    );
+    dispatch(addCommentAction(blogId, name, email, text));
   };
 
   return (
     <form className="comment-form" onSubmit={handleSubmit}>
       <textarea
         name="text"
-        value={commentFormData.text}
+        value={text}
         id="comment-text"
         className="comment-input"
         cols="5"
@@ -50,7 +43,7 @@ const AddCommentForm = ({ blogId }) => {
       <input
         type="text"
         name="name"
-        value={commentFormData.name}
+        value={name}
         id="name"
         className="comment-input"
         placeholder="Name*"
@@ -60,7 +53,7 @@ const AddCommentForm = ({ blogId }) => {
       <input
         type="email"
         name="email"
-        value={commentFormData.email}
+        value={email}
         id="comment-email"
         className="comment-input"
         placeholder="Email*"

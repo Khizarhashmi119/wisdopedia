@@ -1,3 +1,10 @@
+import {
+  SIGN_IN_ADMIN,
+  SIGN_IN_ADMIN_SUCCESS,
+  SIGN_IN_ADMIN_FAIL,
+  SIGN_OUT_ADMIN,
+} from "../actionTypes";
+
 const initState = {
   token: localStorage.getItem("token"),
   isAuthenticated: !!localStorage.getItem("token"),
@@ -9,13 +16,13 @@ const authReducer = (state = initState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "SIGN_IN_ADMIN":
+    case SIGN_IN_ADMIN:
       return {
         ...state,
         isLoading: true,
         errors: [],
       };
-    case "SIGN_IN_ADMIN_SUCCESS":
+    case SIGN_IN_ADMIN_SUCCESS:
       return {
         ...state,
         token: payload,
@@ -23,13 +30,13 @@ const authReducer = (state = initState, action) => {
         isLoading: false,
         errors: [],
       };
-    case "SIGN_IN_ADMIN_FAIL":
+    case SIGN_IN_ADMIN_FAIL:
       return {
         ...state,
         isLoading: false,
         errors: payload,
       };
-    case "SIGN_OUT_ADMIN":
+    case SIGN_OUT_ADMIN:
       return {
         ...state,
         token: null,

@@ -1,8 +1,8 @@
-import React from "react";
+import moment from "moment";
 
 import "./Comment.css";
 
-const Comment = ({ avatar, name, text, createdAt }) => {
+const Comment = ({ comment: { avatar, name, text, createdAt } }) => {
   return (
     <div className="comment">
       <div className="comment-profile-image-container">
@@ -11,7 +11,7 @@ const Comment = ({ avatar, name, text, createdAt }) => {
       <div className="comment-content">
         <h4 className="comment-profile-name">Name: {name}</h4>
         <p className="comment-text">{text}</p>
-        <small>Date: {createdAt}</small>
+        <small>Date: {moment(createdAt).format("MMMM Do YYYY, h:mm a")}</small>
       </div>
     </div>
   );

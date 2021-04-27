@@ -7,9 +7,13 @@ import "./CommentList.css";
 const CommentList = ({ comments }) => {
   return (
     <div className="comments">
-      {comments.map(({ _id, ...otherProps }) => (
-        <Comment key={_id} id={_id} {...otherProps} />
-      ))}
+      {comments.length !== 0 ? (
+        comments.map((comment) => (
+          <Comment key={comment._id} comment={comment} />
+        ))
+      ) : (
+        <h2 className="message">No comment yet.</h2>
+      )}
     </div>
   );
 };

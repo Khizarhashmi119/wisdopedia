@@ -1,24 +1,16 @@
-import React from "react";
-import { withRouter } from "react-router-dom";
-// import { useDispatch } from "react-redux";
-
-// import { deleteBlogAction } from "../../store/actions/BlogsActions";
+import { useHistory } from "react-router-dom";
 
 import "./DashboardBlog.css";
 
-const DashboardBlog = ({ history, id, title, index }) => {
-  // const dispatch = useDispatch();
+const DashboardBlog = ({ blog: { id, title }, index }) => {
+  const { push } = useHistory();
 
   const handleClick1 = () => {
-    history.push(`/edit-blog/${id}`);
-  };
-
-  const handleClick2 = () => {
-    // dispatch(deleteBlogAction(id));
+    push(`/blogs/${id}/update`);
   };
 
   const handleClick3 = () => {
-    history.push(`/blogs/${id}`);
+    push(`/blogs/${id}`);
   };
 
   return (
@@ -28,7 +20,7 @@ const DashboardBlog = ({ history, id, title, index }) => {
         {title}
       </div>
       <div className="dashboard-blog-btns">
-        <button className="dashboard-delete-blog-btn" onClick={handleClick2}>
+        <button className="dashboard-delete-blog-btn">
           <i className="fas fa-trash"></i>
         </button>
         <button className="dashboard-update-blog-btn" onClick={handleClick1}>
@@ -39,4 +31,4 @@ const DashboardBlog = ({ history, id, title, index }) => {
   );
 };
 
-export default withRouter(DashboardBlog);
+export default DashboardBlog;

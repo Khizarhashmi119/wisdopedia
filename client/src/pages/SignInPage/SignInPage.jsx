@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
@@ -13,7 +13,9 @@ const SignInPage = () => {
   });
 
   const dispatch = useDispatch();
-  const { isAuthenticated } = useSelector((state) => state.authState);
+  const { isAuthenticated, isLoading } = useSelector(
+    (state) => state.authState
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,6 +32,7 @@ const SignInPage = () => {
   return !isAuthenticated ? (
     <div className="sign-in-page">
       <h2>Signin using email and password.</h2>
+      {isLoading && <h2 className="loading-text">Loading...</h2>}
       <form className="sign-in-form" onSubmit={handleSubmit}>
         <input
           type="email"

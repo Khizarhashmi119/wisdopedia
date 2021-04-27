@@ -1,0 +1,7 @@
+.dashboard-comments-list {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 2rem auto;
+  padding: 1rem 0;
+}

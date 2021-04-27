@@ -1,0 +1,11 @@
+.dashboard-categories-list {
+  box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+  border: 1px solid #c1c1c1;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  margin: 2rem auto;
+  padding: 3%;
+}
