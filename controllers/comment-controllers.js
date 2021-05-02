@@ -7,7 +7,9 @@ import Comment from "../models/Comment.js";
 //* @access public
 const getComments = async (req, res) => {
   try {
-    const comments = await Comment.find().sort({ createdAt: -1 });
+    const comments = await Comment.find()
+      .sort({ createdAt: -1 })
+      .populate("blog", ["title"]);
     return res.status(200).json(comments);
   } catch (err) {
     console.error(err.message);

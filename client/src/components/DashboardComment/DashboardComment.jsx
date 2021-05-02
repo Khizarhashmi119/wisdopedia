@@ -3,7 +3,7 @@ import { deleteCommentAction } from "../../store/actions/commentsActions";
 
 import "./DashboardComment.css";
 
-const DashboardComment = ({ comment: { _id, text, name, email } }) => {
+const DashboardComment = ({ comment: { _id, text, name, email, blog } }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -19,6 +19,7 @@ const DashboardComment = ({ comment: { _id, text, name, email } }) => {
   return (
     <li className="dashboard-comment">
       <div className="dashboard-comment-content">
+        <div className="title">Blog title: {blog.title}</div>
         <div className="name">Name: {name}</div>
         <div className="email">Email: {email}</div>
         <p className="text">{text}</p>

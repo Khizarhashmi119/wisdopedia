@@ -2,13 +2,11 @@ import BlogForm from "../../components/BlogForm/BlogForm";
 
 import "./UpdateBlogPage.css";
 
-const UpdateBlogPage = ({ match }) => {
+const UpdateBlogPage = () => {
   return (
     <div className="update-blog">
-      <div className="container">
-        <h1 className="update-blog-title">Edit project</h1>
-        <BlogForm />
-      </div>
+      <h1 className="update-blog-title">Edit blog</h1>
+      <BlogForm />
     </div>
   );
 };

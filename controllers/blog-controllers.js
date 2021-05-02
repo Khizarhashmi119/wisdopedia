@@ -1,6 +1,7 @@
 import { validationResult } from "express-validator";
 
 import Blog from "../models/Blog.js";
+import Comment from "../models/Comment.js";
 
 //* @route  GET /api/v1/blogs
 //* @desc   Get blogs.
@@ -104,6 +105,7 @@ const deleteBlog = async (req, res) => {
         .json({ errors: [{ msg: "User not authorised." }] });
     }
 
+    await Comment.deleteMany({ blog: blogId });
     await blog.remove();
 
     return res
