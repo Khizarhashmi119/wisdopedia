@@ -1,23 +1,36 @@
 import { useState } from "react";
-// import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
-import FileBase64 from "../FileBase64/FileBase64";
+import {
+  addBlogAction,
+  updateBlogAction,
+} from "../../store/actions/blogsActions";
 
 import "./BlogForm.css";
 
-const BlogForm = () => {
+const BlogForm = ({ blog }) => {
   const [blogFormData, setBlogFormData] = useState({
-    title: "",
-    description: "",
-    body: "",
-    categories: "",
-    author: "",
-    image: "",
+    title: blog ? blog.title : "",
+    description: blog ? blog.description : "",
+    body: blog ? blog.body : "",
+    checkedCategories: blog ? blog.categories.map((blog) => blog._id) : [],
+    author: blog ? blog.author : "",
+    image: null,
   });
-  const { title, description, body, author } = blogFormData;
-  // const { categories } = useSelector((state) => state.categoriesState);
+  const { categories, isLoading } = useSelector(
+    (state) => state.categoriesState
+  );
+  const dispatch = useDispatch();
+  const {
+    title,
+    description,
+    body,
+    author,
+    checkedCategories,
+    image,
+  } = blogFormData;
 
-  const handleChange = (e) => {
+  const inputHandleChange = (e) => {
     const { name, value } = e.target;
 
     setBlogFormData((prevState) => {
@@ -28,20 +41,81 @@ const BlogForm = () => {
     });
   };
 
+  const categoriesInputHandleChange = (e) => {
+    const { value } = e.target;
+
+    if (!checkedCategories.includes(value)) {
+      setBlogFormData((prevState) => ({
+        ...prevState,
+        checkedCategories: [...checkedCategories, value],
+      }));
+    } else {
+      setBlogFormData((prevState) => ({
+        ...prevState,
+        checkedCategories: checkedCategories.filter(
+          (category) => category !== value
+        ),
+      }));
+    }
+  };
+
+  const fileInputHandleChange = (e) => {
+    setBlogFormData((prevState) => ({
+      ...prevState,
+      image: e.target.files[0],
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(blogFormData.categories);
+
+    blog
+      ? dispatch(
+          updateBlogAction(blog._id, {
+            title,
+            description,
+            body,
+            author,
+            categories: checkedCategories.join(", "),
+          })
+        )
+      : dispatch(
+          addBlogAction({
+            title,
+            description,
+            body,
+            author,
+            categories: checkedCategories.join(", "),
+            image,
+          })
+        );
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="blog-publish-button-container">
+        <small>* required fields</small>
+        <button
+          id="blog-publish-button"
+          type="submit"
+          disabled={
+            !title ||
+            !description ||
+            !body ||
+            !author ||
+            checkedCategories.length === 0
+          }
+        >
+          Publish
+        </button>
+      </div>
       <div className="form-input-container">
         <input
           className="blog-input"
           type="text"
           name="title"
           value={title}
-          onChange={handleChange}
+          onChange={inputHandleChange}
           id="blog-title-input"
           placeholder="Title*"
         />
@@ -50,7 +124,7 @@ const BlogForm = () => {
           type="text"
           name="author"
           value={author}
-          onChange={handleChange}
+          onChange={inputHandleChange}
           id="blog-author-input"
           placeholder="Author*"
         />
@@ -58,7 +132,7 @@ const BlogForm = () => {
           className="blog-input"
           name="description"
           value={description}
-          onChange={handleChange}
+          onChange={inputHandleChange}
           id="blog-desc-input"
           placeholder="Description*"
         ></textarea>
@@ -66,28 +140,42 @@ const BlogForm = () => {
           className="blog-input"
           name="body"
           value={body}
-          onChange={handleChange}
+          onChange={inputHandleChange}
           id="blog-body-input"
           placeholder="Content*"
         ></textarea>
-        <small>* required fields</small>
-        <FileBase64
+      </div>
+      <fieldset className="categories-container">
+        <legend>Categories*</legend>
+        {!isLoading ? (
+          categories.length !== 0 ? (
+            categories.map(({ _id, name }) => (
+              <div className="category-input-container" key={_id}>
+                <label htmlFor={_id}>{name}</label>
+                <input
+                  id={_id}
+                  type="checkbox"
+                  name={name}
+                  value={_id}
+                  defaultChecked={checkedCategories.includes(_id)}
+                  onChange={categoriesInputHandleChange}
+                />
+              </div>
+            ))
+          ) : (
+            <h2>No category yet.</h2>
+          )
+        ) : (
+          <h2>Loading...</h2>
+        )}
+      </fieldset>
+      <div className="file-input-container">
+        <input
           className="blog-input"
           id="blog-image-input"
-          onDone={(fileDataURL) =>
-            setBlogFormData((prevState) => {
-              return {
-                ...prevState,
-                image: fileDataURL,
-              };
-            })
-          }
+          type="file"
+          onChange={fileInputHandleChange}
         />
-      </div>
-      <div className="blog-publish-button-container">
-        <button id="blog-publish-button" type="submit">
-          Publish
-        </button>
       </div>
     </form>
   );

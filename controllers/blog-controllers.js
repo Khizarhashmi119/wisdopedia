@@ -64,6 +64,7 @@ const addBlog = async (req, res) => {
 
   const { id } = req.user;
   const { title, description, body, author, categories } = req.body;
+  const { filename } = req.file;
 
   try {
     //* Create new blog.
@@ -74,6 +75,7 @@ const addBlog = async (req, res) => {
       body,
       author,
       categories: categories.split(",").map((catogoryId) => catogoryId.trim()),
+      imageName: filename,
     });
 
     //* Save blog to database.
@@ -144,15 +146,27 @@ const updateBlog = async (req, res) => {
         .json({ errors: [{ msg: "User not authorised." }] });
     }
 
-    await blog.updateOne({
-      title,
-      description,
-      body,
-      author,
-      categories: categories.split(",").map((catogoryId) => catogoryId.trim()),
-    });
+    const updatedBlog = await Blog.findByIdAndUpdate(
+      blogId,
+      {
+        $set: {
+          title,
+          description,
+          body,
+          author,
+          categories: categories
+            .split(",")
+            .map((catogoryId) => catogoryId.trim()),
+        },
+      },
+      {
+        new: true,
+      }
+    ).populate("categories");
 
-    return res.status(200).json(blog);
+    console.log(updatedBlog);
+
+    return res.status(200).json(updatedBlog);
   } catch (err) {
     console.error(err.message);
     return res

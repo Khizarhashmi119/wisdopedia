@@ -9,7 +9,7 @@ const getComments = async (req, res) => {
   try {
     const comments = await Comment.find()
       .sort({ createdAt: -1 })
-      .populate("blog", ["title"]);
+      .populate("blog", ["_id", "title"]);
     return res.status(200).json(comments);
   } catch (err) {
     console.error(err.message);

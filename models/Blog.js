@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
 
-import { commentSchema } from "./Comment.js";
-
 const { ObjectId } = mongoose.Schema.Types;
 
 const blogSchema = new mongoose.Schema(
@@ -11,20 +9,17 @@ const blogSchema = new mongoose.Schema(
       ref: "Admin",
       required: true,
     },
-    categories: [
-      {
-        type: ObjectId,
-        ref: "Category",
-      },
-    ],
-    image: {
-      type: String,
-    },
     title: {
       type: String,
       required: true,
       maxlength: 32,
       trim: true,
+    },
+    author: {
+      type: String,
+      required: true,
+      trim: true,
+      maxlength: 32,
     },
     description: {
       type: String,
@@ -36,11 +31,14 @@ const blogSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    author: {
+    categories: [
+      {
+        type: ObjectId,
+        ref: "Category",
+      },
+    ],
+    imageName: {
       type: String,
-      required: true,
-      trim: true,
-      maxlength: 32,
     },
   },
   { timestamps: true }

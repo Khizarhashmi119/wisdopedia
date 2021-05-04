@@ -3,7 +3,7 @@ import {
   SIGN_IN_ADMIN_SUCCESS,
   SIGN_IN_ADMIN_FAIL,
   SIGN_OUT_ADMIN,
-} from "../actionTypes";
+} from "../actionTypes/authActionTypes";
 
 const initState = {
   token: localStorage.getItem("token"),

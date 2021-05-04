@@ -20,8 +20,10 @@
     "gravatar": "^1.8.1",
     "inquirer": "^7.3.3",
     "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
     "moment": "^2.29.1",
     "mongoose": "^5.9.24",
+    "multer": "^1.4.2",
     "uuid": "^8.2.0"
   },
   "devDependencies": {

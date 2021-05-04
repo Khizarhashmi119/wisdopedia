@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import Wisdopedia from "../../images/wisdopedia.png";
-
 import "./Footer.css";
 
 const Footer = () => {
@@ -22,7 +20,7 @@ const Footer = () => {
           <div className="footer-top-col footer-top-col-2">
             <img
               className="footer-site-logo"
-              src={Wisdopedia}
+              src="/images/wisdopedia.png"
               alt="wisdopedia"
             />
             <h3 className="footer-site-branding">Wisdopedia</h3>

@@ -20,7 +20,7 @@ const DashboardCommentsList = () => {
         comments.length !== 0 ? (
           <ul className="dashboard-comments-list">
             {comments.map((comment) => {
-              return <DashboardComment comment={comment} />;
+              return <DashboardComment key={comment._id} comment={comment} />;
             })}
           </ul>
         ) : (

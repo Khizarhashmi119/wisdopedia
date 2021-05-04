@@ -8,7 +8,7 @@ import {
   GET_CATEGORIES_FAIL,
   ADD_CATEGORY_FAIL,
   DELETE_CATEGORY_FAIL,
-} from "../actionTypes";
+} from "../actionTypes/categoryActionTypes";
 
 const initState = {
   categories: [],

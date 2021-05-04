@@ -11,7 +11,7 @@ import {
   ADD_COMMENT_FAIL,
   DELETE_COMMENT_FAIL,
   DELETE_COMMENT_BY_BLOGID_FAIL,
-} from "../actionTypes";
+} from "../actionTypes/commentActionTypes";
 
 const initState = {
   comments: [],
@@ -57,7 +57,9 @@ const commentsReducer = (state = initState, action) => {
       return {
         ...state,
         isLoading: false,
-        comments: state.comments.filter((comment) => comment.blog !== payload),
+        comments: state.comments.filter(
+          (comment) => comment.blog._id !== payload
+        ),
         errors: [],
       };
     case GET_COMMENTS_FAIL:

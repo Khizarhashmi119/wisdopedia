@@ -7,10 +7,7 @@ import {
   GET_CATEGORIES_SUCCESS,
   ADD_CATEGORY_SUCCESS,
   DELETE_CATEGORY_SUCCESS,
-  GET_CATEGORIES_FAIL,
-  ADD_CATEGORY_FAIL,
-  DELETE_CATEGORY_FAIL,
-} from "../actionTypes";
+} from "../actionTypes/categoryActionTypes";
 
 const getCategoriesAction = () => {
   return async (dispatch) => {
@@ -20,7 +17,6 @@ const getCategoriesAction = () => {
       dispatch({ type: GET_CATEGORIES_SUCCESS, payload: response.data });
     } catch (err) {
       console.error(err);
-      dispatch({ type: GET_CATEGORIES_FAIL });
     }
   };
 };
@@ -43,7 +39,6 @@ const addCategoryAction = (category) => {
       dispatch({ type: ADD_CATEGORY_SUCCESS, payload: response.data });
     } catch (err) {
       console.error(err);
-      dispatch({ type: ADD_CATEGORY_FAIL });
     }
   };
 };
@@ -60,7 +55,6 @@ const deleteCategoryAction = (categoryId) => {
       dispatch({ type: DELETE_CATEGORY_SUCCESS, payload: categoryId });
     } catch (err) {
       console.error(err);
-      dispatch({ type: DELETE_CATEGORY_FAIL });
     }
   };
 };

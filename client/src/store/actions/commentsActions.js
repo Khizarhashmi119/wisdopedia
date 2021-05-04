@@ -7,10 +7,7 @@ import {
   GET_COMMENTS_SUCCESS,
   ADD_COMMENT_SUCCESS,
   DELETE_COMMENT_SUCCESS,
-  GET_COMMENTS_FAIL,
-  ADD_COMMENT_FAIL,
-  DELETE_COMMENT_FAIL,
-} from "../actionTypes";
+} from "../actionTypes/commentActionTypes";
 
 const getCommentsAction = () => {
   return async (dispatch) => {
@@ -20,7 +17,6 @@ const getCommentsAction = () => {
       dispatch({ type: GET_COMMENTS_SUCCESS, payload: response.data });
     } catch (err) {
       console.error(err);
-      dispatch({ type: GET_COMMENTS_FAIL });
     }
   };
 };
@@ -33,7 +29,6 @@ const getBlogCommentsAction = (blogId) => {
       dispatch({ type: GET_COMMENTS_SUCCESS, payload: response.data });
     } catch (err) {
       console.error(err);
-      dispatch({ type: GET_COMMENTS_FAIL });
     }
   };
 };
@@ -53,9 +48,6 @@ const addCommentAction = (blogId, name, email, text) => {
       });
     } catch (err) {
       console.error(err);
-      dispatch({
-        type: ADD_COMMENT_FAIL,
-      });
     }
   };
 };
@@ -72,7 +64,6 @@ const deleteCommentAction = (commentId) => {
       dispatch({ type: DELETE_COMMENT_SUCCESS, payload: commentId });
     } catch (err) {
       console.error(err);
-      dispatch({ type: DELETE_COMMENT_FAIL });
     }
   };
 };

@@ -9,8 +9,6 @@ import ShareButtons from "../../components/ShareButtons/ShareButtons";
 import { getBlogCommentsAction } from "../../store/actions/commentsActions";
 import { getBlogAction } from "../../store/actions/blogsActions";
 
-import BlogImage from "../../images/blog.jpg";
-
 import "./BlogDetailPage.css";
 
 const BlogDetailPage = () => {
@@ -31,7 +29,11 @@ const BlogDetailPage = () => {
       {!isLoading ? (
         blog ? (
           <Fragment>
-            <img className="blog-main-image" src={BlogImage} alt="blog-title" />
+            <img
+              className="blog-main-image"
+              src={`/uploads/${blog.imageName}`}
+              alt="blog-title"
+            />
             <div className="blog-date">
               Date: {moment(blog.updatedAt).format("MMMM Do YYYY, h:mm a")}
             </div>

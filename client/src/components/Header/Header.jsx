@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { signOutAdminAction } from "../../store/actions/authActions";
 
-import Wisdopedia from "../../images/wisdopedia.png";
-
 import "./Header.css";
 
 const Header = ({ location: { pathname } }) => {
@@ -32,7 +30,11 @@ const Header = ({ location: { pathname } }) => {
     <header className="header" style={headerStyle}>
       <nav className="navbar">
         <div className="site-branding">
-          <img className="site-logo" src={Wisdopedia} alt="wisdopedia" />
+          <img
+            className="site-logo"
+            src="/images/wisdopedia.png"
+            alt="wisdopedia"
+          />
           <div className="site-title-section">
             <h1 className="site-title">
               <NavLink className="nav-link" to="/">
