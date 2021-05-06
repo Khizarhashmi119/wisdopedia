@@ -1,12 +1,12 @@
-import React from "react";
-import { NavLink, withRouter } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { signOutAdminAction } from "../../store/actions/authActions";
+import { signOutAdminAction } from "../../redux/actions/authActions";
 
 import "./Header.css";
 
-const Header = ({ location: { pathname } }) => {
+const Header = () => {
+  const { pathname } = useLocation();
   let headerStyle;
 
   switch (pathname) {
@@ -103,4 +103,4 @@ const Header = ({ location: { pathname } }) => {
   );
 };
 
-export default withRouter(Header);
+export default Header;

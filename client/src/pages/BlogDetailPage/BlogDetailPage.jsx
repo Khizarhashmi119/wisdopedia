@@ -6,8 +6,8 @@ import moment from "moment";
 import AddCommentForm from "../../components/AddCommentForm/AddCommentForm";
 import CommentList from "../../components/CommentList/CommentList";
 import ShareButtons from "../../components/ShareButtons/ShareButtons";
-import { getBlogCommentsAction } from "../../store/actions/commentsActions";
-import { getBlogAction } from "../../store/actions/blogsActions";
+import { getBlogCommentsAction } from "../../redux/actions/commentsActions";
+import { getBlogAction } from "../../redux/actions/blogsActions";
 
 import "./BlogDetailPage.css";
 

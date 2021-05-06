@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import BlogForm from "../../components/BlogForm/BlogForm";
-import { getBlogAction } from "../../store/actions/blogsActions";
+import { getBlogAction } from "../../redux/actions/blogsActions";
 
 import "./UpdateBlogPage.css";
 

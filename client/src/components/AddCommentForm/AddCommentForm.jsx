@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addCommentAction } from "../../store/actions/commentsActions";
+import { addCommentAction } from "../../redux/actions/commentsActions";
 
 import "./AddCommentForm.css";
 

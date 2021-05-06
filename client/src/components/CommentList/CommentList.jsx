@@ -1,5 +1,3 @@
-import React from "react";
-
 import Comment from "../Comment/Comment";
 
 import "./CommentList.css";

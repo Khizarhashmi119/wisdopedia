@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   addBlogAction,
   updateBlogAction,
-} from "../../store/actions/blogsActions";
+} from "../../redux/actions/blogsActions";
 
 import "./BlogForm.css";
 

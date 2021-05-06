@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import AddCategoryForm from "../../components/AddCategoryForm/AddCategoryForm";
 import DashboardCategoryList from "../../components/DashboardCategoryList/DashboardCategoryList";
 import DashboardBlogsList from "../../components/DashboardBlogsList/DashboardBlogsList";
-import DashboardCommentsList from "../../components/DashboardCommentList/DashboardCommentList";
+import DashboardCommentsList from "../../components/DashboardCommentsList/DashboardCommentsList";
 
 import "./DashboardPage.css";
 

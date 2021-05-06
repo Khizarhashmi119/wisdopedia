@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { addCategoryAction } from "../../store/actions/categoriesActions";
+import { addCategoryAction } from "../../redux/actions/categoriesActions";
 
 import "./AddCategoryForm.css";
 
