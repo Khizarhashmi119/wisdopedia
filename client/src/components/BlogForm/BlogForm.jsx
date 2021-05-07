@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Editor } from "@tinymce/tinymce-react";
 
 import {
   addBlogAction,
@@ -59,6 +60,13 @@ const BlogForm = ({ blog }) => {
     }
   };
 
+  const bodyHandleChange = (content, editor) => {
+    setBlogFormData((prevState) => ({
+      ...prevState,
+      body: content,
+    }));
+  };
+
   const fileInputHandleChange = (e) => {
     setBlogFormData((prevState) => ({
       ...prevState,
@@ -109,7 +117,7 @@ const BlogForm = ({ blog }) => {
           Publish
         </button>
       </div>
-      <div className="form-input-container">
+      <div className="input-container">
         <input
           className="blog-input"
           type="text"
@@ -136,15 +144,18 @@ const BlogForm = ({ blog }) => {
           id="blog-desc-input"
           placeholder="Description*"
         ></textarea>
-        <textarea
-          className="blog-input"
-          name="body"
-          value={body}
-          onChange={inputHandleChange}
-          id="blog-body-input"
-          placeholder="Content*"
-        ></textarea>
       </div>
+      <Editor
+        apiKey="ikkh91gpnwr70kvztwr6pn7w7xiaqkz47ls6z7ajhio3t7jz"
+        init={{
+          height: 300,
+          menubar: true,
+          plugins: `advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code fullscreen insertdatetime media table paste help wordcount codesample image`,
+          toolbar: `undo redo | formatselect | bold italic backcolor | codesample image media | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | "removeformat | preview | help`,
+        }}
+        value={body}
+        onEditorChange={bodyHandleChange}
+      />
       <fieldset className="categories-container">
         <legend>Categories*</legend>
         {!isLoading ? (

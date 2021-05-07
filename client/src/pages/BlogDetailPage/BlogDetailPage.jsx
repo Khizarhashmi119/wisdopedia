@@ -44,7 +44,10 @@ const BlogDetailPage = () => {
             <div className="row">
               <div className="col-1">
                 <h2 className="blog-title">{blog.title}</h2>
-                <p className="blog-body">{blog.body}</p>
+                <div
+                  className="blog-body"
+                  dangerouslySetInnerHTML={{ __html: blog.body }}
+                ></div>
                 <ShareButtons blog={blog} blogUrl={blogUrl} />
                 <AddCommentForm blogId={blog._id} />
                 <CommentList comments={comments} />

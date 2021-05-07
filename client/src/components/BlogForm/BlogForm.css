@@ -1,7 +1,8 @@
-.form-input-container {
+.input-container {
   display: grid;
   grid-template-columns: auto auto auto auto;
   grid-gap: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .blog-input {
@@ -49,13 +50,6 @@
   grid-column-end: 3;
 }
 
-#blog-image-input {
-  grid-column-start: 1;
-  grid-column-end: 3;
-  padding: 0;
-  width: 300px;
-}
-
 ::-webkit-file-upload-button {
   border-color: #fc7978;
   background-color: #fc7978;
@@ -75,7 +69,6 @@
   grid-column-end: 5;
 }
 
-#blog-body-input,
 #blog-desc-input {
   grid-column-start: 1;
   grid-column-end: 5;
