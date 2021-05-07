@@ -1,4 +1,5 @@
 import { validationResult } from "express-validator";
+import fs from "fs";
 
 import Blog from "../models/Blog.js";
 import Comment from "../models/Comment.js";
@@ -100,11 +101,16 @@ const deleteBlog = async (req, res) => {
   try {
     //* Delete Blog.
     const blog = await Blog.findById(blogId);
+    const imagePath = `./client/public/uploads/${blog.imageName}`;
 
     if (blog.user.toString() !== userId) {
       return res
         .status(200)
         .json({ errors: [{ msg: "User not authorised." }] });
+    }
+
+    if (fs.existsSync(imagePath)) {
+      fs.unlinkSync(imagePath);
     }
 
     await Comment.deleteMany({ blog: blogId });
@@ -146,6 +152,37 @@ const updateBlog = async (req, res) => {
         .json({ errors: [{ msg: "User not authorised." }] });
     }
 
+    if (req.file) {
+      const { filename: imageName } = req.file;
+      const blog = await Blog.findById(blogId);
+      const imagePath = `./client/public/uploads/${blog.imageName}`;
+
+      if (fs.existsSync(imagePath)) {
+        fs.unlinkSync(imagePath);
+      }
+
+      const updatedBlog = await Blog.findByIdAndUpdate(
+        blogId,
+        {
+          $set: {
+            title,
+            description,
+            body,
+            author,
+            categories: categories
+              .split(",")
+              .map((catogoryId) => catogoryId.trim()),
+            imageName,
+          },
+        },
+        {
+          new: true,
+        }
+      ).populate("categories");
+
+      return res.status(200).json(updatedBlog);
+    }
+
     const updatedBlog = await Blog.findByIdAndUpdate(
       blogId,
       {
@@ -163,8 +200,6 @@ const updateBlog = async (req, res) => {
         new: true,
       }
     ).populate("categories");
-
-    console.log(updatedBlog);
 
     return res.status(200).json(updatedBlog);
   } catch (err) {

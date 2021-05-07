@@ -92,13 +92,24 @@ const deleteBlogAction = (blogId) => {
   };
 };
 
-const updateBlogAction = (blogId, blog) => {
+const updateBlogAction = (
+  blogId,
+  { title, description, body, author, categories, image }
+) => {
   return async (dispatch) => {
     try {
       dispatch({ type: UPDATE_BLOG });
-      const response = await axios.put(`/api/v1/blogs/${blogId}`, blog, {
+      const blogData = new FormData();
+      blogData.append("title", title);
+      blogData.append("description", description);
+      blogData.append("body", body);
+      blogData.append("author", author);
+      blogData.append("categories", categories);
+      blogData.append("image", image);
+      const response = await axios.put(`/api/v1/blogs/${blogId}`, blogData, {
         headers: {
           "x-auth-token": localStorage.getItem("token"),
+          "content-type": "multipart/form-data",
         },
       });
       dispatch({

@@ -85,6 +85,7 @@ const BlogForm = ({ blog }) => {
             body,
             author,
             categories: checkedCategories.join(", "),
+            image,
           })
         )
       : dispatch(

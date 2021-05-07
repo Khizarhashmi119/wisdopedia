@@ -66,6 +66,7 @@ router.delete("/:blogId", authMiddleware, deleteBlog);
 router.put(
   "/:blogId",
   authMiddleware,
+  upload.single("image"),
   [
     body("title", "Title is required.").notEmpty(),
     body("body", "Body is required.").notEmpty(),
