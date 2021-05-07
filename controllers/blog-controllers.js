@@ -11,12 +11,8 @@ const getBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find({})
       .sort({ createdAt: -1 })
-      .populate("user", ["firstName", "middleName", "lastName"])
+      .populate("admin", ["firstName", "middleName", "lastName"])
       .populate("categories");
-
-    if (blogs.length === 0) {
-      return res.status(404).json({ errors: [{ msg: "No blog found." }] });
-    }
 
     return res.status(200).json(blogs);
   } catch (err) {
@@ -36,7 +32,7 @@ const getBlog = async (req, res) => {
   try {
     const blog = await Blog.findById(blogId)
       .sort({ createdAt: -1 })
-      .populate("user", ["firstName", "middleName", "lastName"])
+      .populate("admin", ["firstName", "middleName", "lastName"])
       .populate("categories");
 
     if (!blog) {
@@ -63,14 +59,14 @@ const addBlog = async (req, res) => {
     return res.status(400).json({ errors: errs.array() });
   }
 
-  const { id } = req.user;
+  const { id } = req.admin;
   const { title, description, body, author, categories } = req.body;
   const { filename } = req.file;
 
   try {
     //* Create new blog.
     const newBlog = new Blog({
-      user: id,
+      admin: id,
       title,
       description,
       body,
@@ -96,17 +92,17 @@ const addBlog = async (req, res) => {
 //* @access private
 const deleteBlog = async (req, res) => {
   const { blogId } = req.params;
-  const { id: userId } = req.user;
+  const { id: adminId } = req.admin;
 
   try {
     //* Delete Blog.
     const blog = await Blog.findById(blogId);
     const imagePath = `./client/public/uploads/${blog.imageName}`;
 
-    if (blog.user.toString() !== userId) {
+    if (blog.admin.toString() !== adminId) {
       return res
         .status(200)
-        .json({ errors: [{ msg: "User not authorised." }] });
+        .json({ errors: [{ msg: "Admin not authorised." }] });
     }
 
     if (fs.existsSync(imagePath)) {
@@ -139,17 +135,17 @@ const updateBlog = async (req, res) => {
   }
 
   const { blogId } = req.params;
-  const { id: userId } = req.user;
+  const { id: adminId } = req.admin;
 
   const { title, description, body, author, categories } = req.body;
 
   try {
     const blog = await Blog.findById(blogId);
 
-    if (blog.user.toString() !== userId) {
+    if (blog.admin.toString() !== adminId) {
       return res
         .status(200)
-        .json({ errors: [{ msg: "User not authorised." }] });
+        .json({ errors: [{ msg: "Admin not authorised." }] });
     }
 
     if (req.file) {

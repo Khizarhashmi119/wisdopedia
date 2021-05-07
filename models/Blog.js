@@ -4,7 +4,7 @@ const { ObjectId } = mongoose.Schema.Types;
 
 const blogSchema = new mongoose.Schema(
   {
-    user: {
+    admin: {
       type: ObjectId,
       ref: "Admin",
       required: true,

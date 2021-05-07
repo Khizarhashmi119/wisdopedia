@@ -17,18 +17,18 @@ const signin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    //* Get user.
-    const user = await Admin.findOne({ email });
+    //* Get admin.
+    const admin = await Admin.findOne({ email });
 
-    //* Check user exist or not.
-    if (!user) {
+    //* Check admin exist or not.
+    if (!admin) {
       return res
         .status(400)
         .json({ errors: [{ msg: "Invalid credentials." }] });
     }
 
-    //* Check user's password.
-    if (!user.authenticate(password)) {
+    //* Check admin's password.
+    if (!admin.authenticate(password)) {
       return res
         .status(400)
         .json({ errors: [{ msg: "Invalid credentials." }] });
@@ -36,8 +36,8 @@ const signin = async (req, res) => {
 
     //* Generate token.
     const payload = {
-      user: {
-        id: user._id,
+      admin: {
+        id: admin._id,
       },
     };
 
