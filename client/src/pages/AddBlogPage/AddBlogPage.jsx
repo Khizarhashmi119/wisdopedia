@@ -1,4 +1,4 @@
-import BlogForm from "../../components/BlogForm/BlogForm";
+import BlogForm from "../../components/layout/BlogForm/BlogForm";
 
 import "./AddBlogPage.css";
 

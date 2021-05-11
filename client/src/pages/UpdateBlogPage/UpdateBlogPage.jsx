@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-import BlogForm from "../../components/BlogForm/BlogForm";
+import BlogForm from "../../components/layout/BlogForm/BlogForm";
 import { getBlogAction } from "../../redux/actions/blogsActions";
 
 import "./UpdateBlogPage.css";

@@ -2,7 +2,7 @@ import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import DashboardComment from "../DashboardComment/DashboardComment";
-import { getCommentsAction } from "../../redux/actions/commentsActions";
+import { getCommentsAction } from "../../../redux/actions/commentsActions";
 
 import "./DashboardCommentsList.css";
 

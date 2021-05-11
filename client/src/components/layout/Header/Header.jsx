@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
-import { signOutAdminAction } from "../../redux/actions/authActions";
+import { signOutAdminAction } from "../../../redux/actions/authActions";
 
 import "./Header.css";
 

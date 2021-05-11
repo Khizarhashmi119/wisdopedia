@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { deleteBlogAction } from "../../redux/actions/blogsActions";
+import { deleteBlogAction } from "../../../redux/actions/blogsActions";
 
 import "./DashboardBlog.css";
 

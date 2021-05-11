@@ -5,7 +5,7 @@ import { Editor } from "@tinymce/tinymce-react";
 import {
   addBlogAction,
   updateBlogAction,
-} from "../../redux/actions/blogsActions";
+} from "../../../redux/actions/blogsActions";
 
 import "./BlogForm.css";
 
@@ -22,14 +22,8 @@ const BlogForm = ({ blog }) => {
     (state) => state.categoriesState
   );
   const dispatch = useDispatch();
-  const {
-    title,
-    description,
-    body,
-    author,
-    checkedCategories,
-    image,
-  } = blogFormData;
+  const { title, description, body, author, checkedCategories, image } =
+    blogFormData;
 
   const inputHandleChange = (e) => {
     const { name, value } = e.target;

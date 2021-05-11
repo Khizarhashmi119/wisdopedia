@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 
-import { deleteCategoryAction } from "../../redux/actions/categoriesActions";
+import { deleteCategoryAction } from "../../../redux/actions/categoriesActions";
 
 import "./DashboardCategory.css";
 

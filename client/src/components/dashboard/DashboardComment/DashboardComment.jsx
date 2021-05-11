@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deleteCommentAction } from "../../redux/actions/commentsActions";
+import { deleteCommentAction } from "../../../redux/actions/commentsActions";
 
 import "./DashboardComment.css";
 
