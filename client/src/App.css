@@ -1,8 +1,36 @@
-* {
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+html,
+body {
   padding: 0;
   margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Poppins", sans-serif;
+}
+
+p {
+  font-family: "Poppins", sans-serif;
+}
+
+a {
+  font-family: "Poppins", sans-serif;
+}
+
+button {
+  font-family: "Poppins", sans-serif;
+}
+
+span {
+  font-family: "Poppins", sans-serif;
 }
 
 .message {

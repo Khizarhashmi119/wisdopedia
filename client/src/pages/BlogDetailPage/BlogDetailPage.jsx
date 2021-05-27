@@ -3,13 +3,11 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
-import AddCommentForm from "../../components/AddCommentForm/AddCommentForm";
-import CommentList from "../../components/CommentList/CommentList";
-import ShareButtons from "../../components/ShareButtons/ShareButtons";
-import { getBlogCommentsAction } from "../../store/actions/commentsActions";
-import { getBlogAction } from "../../store/actions/blogsActions";
-
-import BlogImage from "../../images/blog.jpg";
+import AddCommentForm from "../../components/layout/AddCommentForm/AddCommentForm";
+import CommentList from "../../components/layout/CommentList/CommentList";
+import ShareButtons from "../../components/layout/ShareButtons/ShareButtons";
+import { getBlogCommentsAction } from "../../redux/actions/commentsActions";
+import { getBlogAction } from "../../redux/actions/blogsActions";
 
 import "./BlogDetailPage.css";
 
@@ -31,7 +29,11 @@ const BlogDetailPage = () => {
       {!isLoading ? (
         blog ? (
           <Fragment>
-            <img className="blog-main-image" src={BlogImage} alt="blog-title" />
+            <img
+              className="blog-main-image"
+              src={`/uploads/${blog.imageName}`}
+              alt="blog-title"
+            />
             <div className="blog-date">
               Date: {moment(blog.updatedAt).format("MMMM Do YYYY, h:mm a")}
             </div>
@@ -42,7 +44,10 @@ const BlogDetailPage = () => {
             <div className="row">
               <div className="col-1">
                 <h2 className="blog-title">{blog.title}</h2>
-                <p className="blog-body">{blog.body}</p>
+                <div
+                  className="blog-body"
+                  dangerouslySetInnerHTML={{ __html: blog.body }}
+                ></div>
                 <ShareButtons blog={blog} blogUrl={blogUrl} />
                 <AddCommentForm blogId={blog._id} />
                 <CommentList comments={comments} />

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
-import BlogsPreviewList from "../../components/BlogsPreviewList/BlogsPreviewList";
-import Quote from "../../components/Quote/Quote";
+import BlogsPreviewList from "../../components/layout/BlogsPreviewList/BlogsPreviewList";
+import Quote from "../../components/layout/Quote/Quote";
 
 import "./HomePage.css";
 

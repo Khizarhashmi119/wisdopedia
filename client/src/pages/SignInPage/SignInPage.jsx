@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-import { signInAdminAction } from "../../store/actions/authActions";
+import { signInAdminAction } from "../../redux/actions/authActions";
 
 import "./SignInPage.css";
 
@@ -59,7 +59,7 @@ const SignInPage = () => {
       </form>
     </div>
   ) : (
-    <Redirect to="/" />
+    <Redirect to="/dashboard" />
   );
 };
 

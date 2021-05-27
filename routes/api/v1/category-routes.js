@@ -11,14 +11,14 @@ import {
 
 const router = express.Router();
 
-//* @route  GET /api/v1/categories
-//* @desc   Get categories.
-//* @access public
+// @route  GET /api/v1/categories
+// @desc   Get categories.
+// @access public
 router.get("/", getCategories);
 
-//* @route  POST /api/v1/categories
-//* @desc   Add category.
-//* @access private
+// @route  POST /api/v1/categories
+// @desc   Add category.
+// @access private
 router.post(
   "/",
   authMiddleware,
@@ -26,14 +26,14 @@ router.post(
   addCategory
 );
 
-//* @route  DELETE /api/v1/categories/:categoryId
-//* @desc   Delete category.
-//* @access private
+// @route  DELETE /api/v1/categories/:categoryId
+// @desc   Delete category.
+// @access private
 router.delete("/:categoryId", authMiddleware, deleteCategory);
 
-//* @route  GET /api/v1/categories/:categoryId/blogs
-//* @desc   Get blogs of specific category.
-//* @access public
+// @route  GET /api/v1/categories/:categoryId/blogs
+// @desc   Get blogs of specific category.
+// @access public
 router.get("/:categoryId/blogs", getCategoryBlogs);
 
 export default router;

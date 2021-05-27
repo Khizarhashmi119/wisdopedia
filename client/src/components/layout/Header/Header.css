@@ -1,0 +1,94 @@
+.header {
+  background-position-x: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-bottom: 1px solid #c1c1c1;
+}
+
+.navbar {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  margin: auto;
+  padding: 0.5rem;
+  width: 90%;
+}
+
+.site-branding {
+  display: flex;
+}
+
+.site-logo {
+  width: 3.8rem;
+}
+
+.site-title-section {
+  margin-left: 1rem;
+}
+
+.site-title {
+  font-size: 1.6875rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.site-description {
+  font-size: 12px;
+}
+
+.nav-links {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-link {
+  color: #2a2a2a;
+  text-decoration: none;
+}
+
+.nav-item {
+  margin: 0 1rem;
+}
+
+.header-title-section {
+  padding: 5%;
+}
+
+.header-title {
+  color: #2a2a2a;
+  font-size: 3.9375rem;
+  font-weight: 500;
+  margin: 1rem;
+}
+
+.header-subtitle {
+  color: #2a2a2a;
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin: 1rem;
+}
+
+.header-title-link {
+  border-color: #fc7978;
+  background-color: #fc7978;
+  border-radius: 50px;
+  color: #fff;
+  display: inline-block;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 0.8rem;
+  margin: 0.5rem;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.6s linear;
+}
+
+.header-title-link:hover {
+  background-color: #fc5f5f;
+}

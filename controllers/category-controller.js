@@ -3,9 +3,9 @@ import { validationResult } from "express-validator";
 import Category from "../models/Category.js";
 import Blog from "../models/Blog.js";
 
-//* @route  GET /api/v1/categories
-//* @desc   Get categories.
-//* @access public
+// @route  GET /api/v1/categories
+// @desc   Get categories.
+// @access public
 const getCategories = async (req, res) => {
   try {
     const categories = await Category.find({});
@@ -23,11 +23,11 @@ const getCategories = async (req, res) => {
   }
 };
 
-//* @route  POST /api/v1/categories
-//* @desc   Add category.
-//* @access private
+// @route  POST /api/v1/categories
+// @desc   Add category.
+// @access private
 const addCategory = async (req, res) => {
-  //* Check validation errors.
+  // Check validation errors.
   const errs = validationResult(req);
 
   if (!errs.isEmpty()) {
@@ -52,9 +52,9 @@ const addCategory = async (req, res) => {
   }
 };
 
-//* @route  DELETE /api/v1/categories/:categoryId
-//* @desc   Delete category.
-//* @access private
+// @route  DELETE /api/v1/categories/:categoryId
+// @desc   Delete category.
+// @access private
 const deleteCategory = async (req, res) => {
   const { categoryId } = req.params;
 
@@ -72,9 +72,9 @@ const deleteCategory = async (req, res) => {
   }
 };
 
-//* @route  GET /api/v1/categories/:categoryId/blogs
-//* @desc   Get blogs of specific category.
-//* @access public
+// @route  GET /api/v1/categories/:categoryId/blogs
+// @desc   Get blogs of specific category.
+// @access public
 const getCategoryBlogs = async (req, res) => {
   const { categoryId } = req.params;
 

@@ -12,19 +12,19 @@ import {
 
 const router = express.Router();
 
-//* @route  GET /api/v1/comments
-//* @desc   Get comments.
-//* @access public
+// @route  GET /api/v1/comments
+// @desc   Get comments.
+// @access public
 router.get("/", getComments);
 
-//* @route  GET /api/v1/comments/blogs/:blogId/
-//* @desc   Get comments of a blog.
-//* @access public
+// @route  GET /api/v1/comments/blogs/:blogId/
+// @desc   Get comments of a blog.
+// @access public
 router.get("/blogs/:blogId", getBlogComments);
 
-//* @route  Post /api/v1/comments/blogs/:blogId
-//* @desc   Comment on a blog.
-//* @access public
+// @route  Post /api/v1/comments/blogs/:blogId
+// @desc   Comment on a blog.
+// @access public
 router.post(
   "/blogs/:blogId",
   [
@@ -35,9 +35,9 @@ router.post(
   addComment
 );
 
-//* @route  DELETE /api/v1/comments/:commentId
-//* @desc   Delete comment on a blog.
-//* @access private
+// @route  DELETE /api/v1/comments/:commentId
+// @desc   Delete comment on a blog.
+// @access private
 router.delete("/:commentId", authMiddleware, deleteComment);
 
 export default router;

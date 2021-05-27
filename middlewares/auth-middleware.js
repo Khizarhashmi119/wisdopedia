@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-//* Middlewares
+// Middlewares
 const authMiddleware = (req, res, next) => {
   const token = req.header("x-auth-token");
 
@@ -10,7 +10,7 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const decodedPayload = jwt.verify(token, process.env.SECRET_KEY);
-    req.user = decodedPayload.user;
+    req.admin = decodedPayload.admin;
     next();
   } catch (err) {
     console.error(err.message);

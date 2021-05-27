@@ -37,6 +37,10 @@
   margin: 1rem 0;
 }
 
+.blog-body * {
+  margin: 0.7rem 0;
+}
+
 .col-2 {
   width: 350px;
 }
