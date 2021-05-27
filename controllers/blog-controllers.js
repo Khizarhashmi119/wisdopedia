@@ -97,7 +97,7 @@ const deleteBlog = async (req, res) => {
   try {
     // Delete Blog.
     const blog = await Blog.findById(blogId);
-    const imagePath = `./client/public/uploads/${blog.imageName}`;
+    const imagePath = `./client/build/uploads/${blog.imageName}`;
 
     if (blog.admin.toString() !== adminId) {
       return res
@@ -151,7 +151,7 @@ const updateBlog = async (req, res) => {
     if (req.file) {
       const { filename: imageName } = req.file;
       const blog = await Blog.findById(blogId);
-      const imagePath = `./client/public/uploads/${blog.imageName}`;
+      const imagePath = `./client/build/uploads/${blog.imageName}`;
 
       if (fs.existsSync(imagePath)) {
         fs.unlinkSync(imagePath);
