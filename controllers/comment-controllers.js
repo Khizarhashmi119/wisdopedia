@@ -2,9 +2,9 @@ import { validationResult } from "express-validator";
 import gravatar from "gravatar";
 import Comment from "../models/Comment.js";
 
-//* @route  Get /api/v1/comments
-//* @desc   Get comments.
-//* @access public
+// @route  Get /api/v1/comments
+// @desc   Get comments.
+// @access public
 const getComments = async (req, res) => {
   try {
     const comments = await Comment.find()
@@ -19,9 +19,9 @@ const getComments = async (req, res) => {
   }
 };
 
-//* @route  Get /api/v1/comments/blogs/:blogId
-//* @desc   Get comments of a blog.
-//* @access public
+// @route  Get /api/v1/comments/blogs/:blogId
+// @desc   Get comments of a blog.
+// @access public
 const getBlogComments = async (req, res) => {
   const { blogId: blog } = req.params;
 
@@ -36,11 +36,11 @@ const getBlogComments = async (req, res) => {
   }
 };
 
-//* @route  Post /api/v1/comments/blogs/:blogId
-//* @desc   Comment on a blog.
-//* @access public
+// @route  Post /api/v1/comments/blogs/:blogId
+// @desc   Comment on a blog.
+// @access public
 const addComment = async (req, res) => {
-  //* Check validation errors.
+  // Check validation errors.
   const errs = validationResult(req);
 
   if (!errs.isEmpty()) {
@@ -75,9 +75,9 @@ const addComment = async (req, res) => {
   }
 };
 
-//* @route  DELETE /api/v1/comments/:commentId
-//* @desc   Delete comment on a blog.
-//* @access private
+// @route  DELETE /api/v1/comments/:commentId
+// @desc   Delete comment on a blog.
+// @access private
 const deleteComment = async (req, res) => {
   const { commentId: _id } = req.params;
 

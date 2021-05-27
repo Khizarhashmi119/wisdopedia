@@ -3,11 +3,11 @@ import jwt from "jsonwebtoken";
 
 import Admin from "../models/Admin.js";
 
-//* @route  POST /api/auth/signin
-//* @desc   Admin login route.
-//* @access public
+// @route  POST /api/auth/signin
+// @desc   Admin login route.
+// @access public
 const signin = async (req, res) => {
-  //* Check validation errors.
+  // Check validation errors.
   const errs = validationResult(req);
 
   if (!errs.isEmpty()) {
@@ -17,24 +17,24 @@ const signin = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    //* Get admin.
+    // Get admin.
     const admin = await Admin.findOne({ email });
 
-    //* Check admin exist or not.
+    // Check admin exist or not.
     if (!admin) {
       return res
         .status(400)
         .json({ errors: [{ msg: "Invalid credentials." }] });
     }
 
-    //* Check admin's password.
+    // Check admin's password.
     if (!admin.authenticate(password)) {
       return res
         .status(400)
         .json({ errors: [{ msg: "Invalid credentials." }] });
     }
 
-    //* Generate token.
+    // Generate token.
     const payload = {
       admin: {
         id: admin._id,

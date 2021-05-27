@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 
-//* Middlewares
+// Middlewares
 const authMiddleware = (req, res, next) => {
   const token = req.header("x-auth-token");
 

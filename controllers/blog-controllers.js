@@ -4,9 +4,9 @@ import fs from "fs";
 import Blog from "../models/Blog.js";
 import Comment from "../models/Comment.js";
 
-//* @route  GET /api/v1/blogs
-//* @desc   Get blogs.
-//* @access public
+// @route  GET /api/v1/blogs
+// @desc   Get blogs.
+// @access public
 const getBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find({})
@@ -23,9 +23,9 @@ const getBlogs = async (req, res) => {
   }
 };
 
-//* @route  GET /api/v1/blogs/:blogId
-//* @desc   Get blog.
-//* @access public
+// @route  GET /api/v1/blogs/:blogId
+// @desc   Get blog.
+// @access public
 const getBlog = async (req, res) => {
   const { blogId } = req.params;
 
@@ -48,11 +48,11 @@ const getBlog = async (req, res) => {
   }
 };
 
-//* @route  POST /api/v1/blogs
-//* @desc   Add blog.
-//* @access private
+// @route  POST /api/v1/blogs
+// @desc   Add blog.
+// @access private
 const addBlog = async (req, res) => {
-  //* Check validation errors.
+  // Check validation errors.
   const errs = validationResult(req);
 
   if (!errs.isEmpty()) {
@@ -64,7 +64,7 @@ const addBlog = async (req, res) => {
   const { filename } = req.file;
 
   try {
-    //* Create new blog.
+    // Create new blog.
     const newBlog = new Blog({
       admin: id,
       title,
@@ -75,7 +75,7 @@ const addBlog = async (req, res) => {
       imageName: filename,
     });
 
-    //* Save blog to database.
+    // Save blog to database.
     await newBlog.save();
 
     return res.status(200).json(newBlog);
@@ -87,15 +87,15 @@ const addBlog = async (req, res) => {
   }
 };
 
-//* @route  DELETE /api/v1/blogs/:blogId
-//* @desc   Delete blog.
-//* @access private
+// @route  DELETE /api/v1/blogs/:blogId
+// @desc   Delete blog.
+// @access private
 const deleteBlog = async (req, res) => {
   const { blogId } = req.params;
   const { id: adminId } = req.admin;
 
   try {
-    //* Delete Blog.
+    // Delete Blog.
     const blog = await Blog.findById(blogId);
     const imagePath = `./client/public/uploads/${blog.imageName}`;
 
@@ -123,11 +123,11 @@ const deleteBlog = async (req, res) => {
   }
 };
 
-//* @route  Put /api/v1/blogs/:blogId
-//* @desc   Update blog.
-//* @access private
+// @route  Put /api/v1/blogs/:blogId
+// @desc   Update blog.
+// @access private
 const updateBlog = async (req, res) => {
-  //* Check validation errors.
+  // Check validation errors.
   const errs = validationResult(req);
 
   if (!errs.isEmpty()) {

@@ -9,16 +9,17 @@ import authRoutes from "./routes/api/v1/auth-routes.js";
 import blogRoutes from "./routes/api/v1/blog-routes.js";
 import commentRoutes from "./routes/api/v1/comment-routes.js";
 import categoryRoutes from "./routes/api/v1/category-routes.js";
+import newsLetterRoutes from "./routes/api/v1/news-letter-routes.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
-//* Set enviroment variables
+// Set enviroment variables
 config();
-//* Connect database.
+// Connect database.
 connectDB();
 
-//* Middlewares.
+// Middlewares.
 app.use(express.json());
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -28,11 +29,12 @@ app.get("/", (req, res) => {
   res.json({ msg: "API is running..." });
 });
 
-//* API routes.
+// API routes.
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/blogs", blogRoutes);
 app.use("/api/v1/comments", commentRoutes);
 app.use("/api/v1/categories", categoryRoutes);
+app.use("/api/v1/news-letter", newsLetterRoutes);
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(join(__dirname, "client", "build")));
