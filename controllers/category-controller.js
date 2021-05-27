@@ -10,10 +10,6 @@ const getCategories = async (req, res) => {
   try {
     const categories = await Category.find({});
 
-    if (categories.length === 0) {
-      return res.status(404).json({ errors: [{ msg: "No category found." }] });
-    }
-
     return res.status(200).json(categories);
   } catch (err) {
     console.error(err.message);
