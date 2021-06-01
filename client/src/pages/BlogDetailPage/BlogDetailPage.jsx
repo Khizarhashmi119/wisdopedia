@@ -29,7 +29,7 @@ const BlogDetailPage = () => {
 
   const blogUrl = document.location.href;
   const baseURL =
-    process.env.NODE_ENV === "production" ? "/" : "http://localhost:5000/";
+    process.env.NODE_ENV === "production" ? "" : "http://localhost:5000/";
 
   return (
     <div className="blog-detail-page">
