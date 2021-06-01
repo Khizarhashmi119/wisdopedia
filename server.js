@@ -20,7 +20,7 @@ connectDB();
 // Middlewares.
 app.use(cors());
 app.use(express.json());
-app.use(express.static("uploads"));
+app.use("/api/v1", express.static("uploads"));
 if (process.env.NODE_ENV === "development") {
   app.use(require("morgan")("dev"));
 }
