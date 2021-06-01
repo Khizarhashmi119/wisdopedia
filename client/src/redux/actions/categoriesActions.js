@@ -5,7 +5,9 @@ import * as categoryActionTypes from "../actionTypes/categoryActionTypes";
 import * as alertActionTypes from "../actionTypes/alertActionTypes";
 
 const baseURL =
-  process.env.NODE_ENV === "production" ? "" : "http://localhost:5000/api/v1";
+  process.env.NODE_ENV === "production"
+    ? "/api/v1"
+    : "http://localhost:5000/api/v1";
 
 const getCategoriesAction = () => {
   return async (dispatch) => {
