@@ -40,4 +40,5 @@
 .blog-body * {
   font-family: Georgia, Times, "Times New Roman", serif;
   font-size: 1.2rem;
+  max-width: 100%;
 }
