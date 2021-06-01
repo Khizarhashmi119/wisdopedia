@@ -1,23 +1,55 @@
 import axios from "axios";
+import { v4 } from "uuid";
 
-import {
-  SIGN_IN_ADMIN,
-  SIGN_OUT_ADMIN,
-  SIGN_IN_ADMIN_SUCCESS,
-} from "../actionTypes/authActionTypes";
+import * as authActionTypes from "../actionTypes/authActionTypes";
+import * as alertActionTypes from "../actionTypes/alertActionTypes";
+
+const baseURL =
+  process.env.NODE_ENV === "production" ? "/" : "http://localhost:5000/api/v1";
+
+const setTokenAction = (token) => {
+  return {
+    type: authActionTypes.SET_TOKEN,
+    token,
+  };
+};
 
 const signInAdminAction = (email, password) => {
   return async (dispatch) => {
     try {
-      dispatch({ type: SIGN_IN_ADMIN });
+      dispatch({ type: authActionTypes.SIGN_IN_ADMIN });
 
-      const response = await axios.post("/api/v1/auth/signin", {
+      const {
+        data: { token },
+      } = await axios.post(`${baseURL}/auth/signin`, {
         email,
         password,
       });
 
-      localStorage.setItem("token", response.data.token);
-      dispatch({ type: SIGN_IN_ADMIN_SUCCESS, payload: response.data.token });
+      dispatch({
+        type: authActionTypes.SIGN_IN_ADMIN_SUCCESS,
+        token,
+      });
+
+      const alertId = v4();
+
+      dispatch({
+        type: alertActionTypes.ADD_ALERT,
+        alert: {
+          id: alertId,
+          msg: "Successfully logged in.",
+          type: "success",
+        },
+      });
+
+      setTimeout(
+        () =>
+          dispatch({
+            type: alertActionTypes.DELETE_ALERT,
+            id: alertId,
+          }),
+        5000
+      );
     } catch (error) {
       console.error(error);
     }
@@ -25,8 +57,7 @@ const signInAdminAction = (email, password) => {
 };
 
 const signOutAdminAction = () => {
-  localStorage.removeItem("token");
-  return { type: SIGN_OUT_ADMIN };
+  return { type: authActionTypes.SIGN_OUT_ADMIN };
 };
 
-export { signInAdminAction, signOutAdminAction };
+export { setTokenAction, signInAdminAction, signOutAdminAction };

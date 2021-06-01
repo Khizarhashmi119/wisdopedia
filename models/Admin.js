@@ -1,7 +1,7 @@
-import crypto from "crypto";
+const crypto = require("crypto");
 
-import mongoose from "mongoose";
-import { v4 } from "uuid";
+const mongoose = require("mongoose");
+const uuid = require("uuid");
 
 const adminSchema = new mongoose.Schema(
   {
@@ -44,7 +44,7 @@ const adminSchema = new mongoose.Schema(
 );
 
 adminSchema.virtual("password").set(function (password) {
-  this.salt = v4();
+  this.salt = uuid.v4();
   this.encryPassword = this.encryptPassword(password);
 });
 
@@ -67,4 +67,4 @@ adminSchema.methods = {
 
 const Admin = mongoose.model("Admin", adminSchema);
 
-export default Admin;
+module.exports = Admin;

@@ -1,22 +1,19 @@
-import express from "express";
-import { body } from "express-validator";
+const express = require("express");
+const { body } = require("express-validator");
 
-import {
-  subscribeNewsLetter,
-  unsubscribeNewsLetter,
-} from "../../../controllers/news-letter-controllers.js";
+const newsLetterControllers = require("../../../controllers/news-letter-controllers");
 
 const router = express.Router();
 
 router.post(
   "/subscribe",
   [body("email", "Please enter valid email.").isEmail()],
-  subscribeNewsLetter
+  newsLetterControllers.subscribeNewsLetter
 );
 router.post(
   "/unsubscribe",
   [body("email", "Please enter valid email.").isEmail()],
-  unsubscribeNewsLetter
+  newsLetterControllers.unsubscribeNewsLetter
 );
 
-export default router;
+module.exports = router;

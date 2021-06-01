@@ -1,6 +1,6 @@
-import { validationResult } from "express-validator";
-import mailchimp from "@mailchimp/mailchimp_marketing";
-import md5 from "md5";
+const { validationResult } = require("express-validator");
+const mailchimp = require("@mailchimp/mailchimp_marketing");
+const md5 = require("md5");
 
 // @route  POST /api/v1/news-letter/subscribe
 // @desc   Subscribe news letter.
@@ -17,6 +17,8 @@ const subscribeNewsLetter = async (req, res) => {
   const listId = process.env.LIST_ID;
   const apiKey = process.env.API_KEY;
 
+  console.log(email);
+
   const subscribingUser = {
     email,
   };
@@ -27,16 +29,16 @@ const subscribeNewsLetter = async (req, res) => {
   });
 
   try {
-    const response = await mailchimp.lists.addListMember(listId, {
+    await mailchimp.lists.addListMember(listId, {
       email_address: subscribingUser.email,
       status: "subscribed",
     });
 
     return res.status(200).json({
-      msg: `Successfully added contact as an audience member. The contact's id is ${response.id}.`,
+      msg: `Successfully subscribed news letter`,
     });
   } catch (err) {
-    console.error(err.message);
+    console.error(err);
     return res
       .status(500)
       .json({ errors: [{ msg: "Internal server error." }] });
@@ -77,4 +79,4 @@ const unsubscribeNewsLetter = async (req, res) => {
   }
 };
 
-export { subscribeNewsLetter, unsubscribeNewsLetter };
+module.exports = { subscribeNewsLetter, unsubscribeNewsLetter };

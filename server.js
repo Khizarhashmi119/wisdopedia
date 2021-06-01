@@ -1,28 +1,28 @@
-import { config } from "dotenv";
-import express from "express";
-import morgan from "morgan";
-import { join, dirname } from "path";
-import { fileURLToPath } from "url";
+const dotenv = require("dotenv");
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
 
-import connectDB from "./db.js";
-import authRoutes from "./routes/api/v1/auth-routes.js";
-import blogRoutes from "./routes/api/v1/blog-routes.js";
-import commentRoutes from "./routes/api/v1/comment-routes.js";
-import categoryRoutes from "./routes/api/v1/category-routes.js";
-import newsLetterRoutes from "./routes/api/v1/news-letter-routes.js";
+const connectDB = require("./db");
+const authRoutes = require("./routes/api/v1/auth-routes");
+const blogRoutes = require("./routes/api/v1/blog-routes");
+const commentRoutes = require("./routes/api/v1/comment-routes");
+const categoryRoutes = require("./routes/api/v1/category-routes");
+const newsLetterRoutes = require("./routes/api/v1/news-letter-routes");
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 
 // Set enviroment variables
-config();
+dotenv.config();
 // Connect database.
 connectDB();
 
 // Middlewares.
+app.use(cors());
 app.use(express.json());
+app.use(express.static("uploads"));
 if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
+  app.use(require("morgan")("dev"));
 }
 
 // API routes.
@@ -33,10 +33,8 @@ app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/news-letter", newsLetterRoutes);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(join(__dirname, "client", "build")));
-
   app.get("*", (req, res) => {
-    res.sendFile(join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
   });
 }
 

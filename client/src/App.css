@@ -13,26 +13,159 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: "Poppins", sans-serif;
-}
-
-p {
+h6,
+p,
+button,
+li,
+div,
+span,
+label,
+legend,
+small,
+textarea {
   font-family: "Poppins", sans-serif;
 }
 
 a {
-  font-family: "Poppins", sans-serif;
-}
-
-button {
-  font-family: "Poppins", sans-serif;
-}
-
-span {
+  text-decoration: none;
   font-family: "Poppins", sans-serif;
 }
 
 .message {
   margin: 1rem 0;
+}
+
+@media (max-width: 1000px) {
+  .site-logo {
+    width: 3rem;
+  }
+
+  .site-title-section {
+    margin-left: 1rem;
+  }
+
+  .site-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0;
+  }
+
+  .site-description {
+    font-size: 10px;
+  }
+
+  .navbar-menu-btn {
+    display: inline-block;
+  }
+
+  .nav-links {
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid hsl(0, 0%, 76%);
+    border-top: 1px solid #c1c1c1;
+    display: none;
+    flex-direction: column;
+    padding: 1rem 0;
+    position: absolute;
+    top: 9vh;
+    left: 0;
+    width: 100%;
+  }
+
+  .nav-item {
+    margin: 0.5rem;
+  }
+
+  .header-title {
+    font-size: 2rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .header-title-link {
+    font-size: 0.8rem;
+    padding-top: 12px;
+    padding-right: 20px;
+    padding-bottom: 12px;
+    padding-left: 20px;
+  }
+
+  .blog-main-image {
+    height: 200px;
+  }
+
+  .blog-author-name,
+  .blog-category-name,
+  .blog-date {
+    font-size: 0.6rem;
+    font-weight: 300;
+  }
+
+  .blog-body * {
+    font-family: Georgia, Times, "Times New Roman", serif;
+    font-size: 1rem;
+  }
+
+  .share-btn-container a i {
+    font-size: 1rem;
+  }
+
+  .comment-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem auto;
+    width: 80%;
+  }
+
+  .dashboard-blog {
+    display: flex;
+    justify-content: center;
+  }
+
+  .dashboard-blog-title {
+    text-align: center;
+  }
+
+  .dashboard-blog-btns {
+    text-align: center;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .categories-container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
+
+  .file-input-container {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-top .container,
+  .footer-bottom .container {
+    justify-content: center;
+  }
+
+  .footer-top-cols {
+    text-align: center;
+  }
+}
+
+.navbar-active {
+  display: flex;
 }

@@ -1,14 +1,4 @@
-import {
-  GET_CATEGORIES,
-  ADD_CATEGORY,
-  DELETE_CATEGORY,
-  GET_CATEGORIES_SUCCESS,
-  ADD_CATEGORY_SUCCESS,
-  DELETE_CATEGORY_SUCCESS,
-  GET_CATEGORIES_FAIL,
-  ADD_CATEGORY_FAIL,
-  DELETE_CATEGORY_FAIL,
-} from "../actionTypes/categoryActionTypes";
+import * as categoryActionTypes from "../actionTypes/categoryActionTypes";
 
 const initState = {
   categories: [],
@@ -17,47 +7,43 @@ const initState = {
 };
 
 const categoriesReducer = (state = initState, action) => {
-  const { type, payload } = action;
-
-  switch (type) {
-    case GET_CATEGORIES:
-    case ADD_CATEGORY:
-    case DELETE_CATEGORY:
+  switch (action.type) {
+    case categoryActionTypes.GET_CATEGORIES:
+    case categoryActionTypes.ADD_CATEGORY:
+    case categoryActionTypes.DELETE_CATEGORY:
       return {
         ...state,
         isLoading: true,
         errors: [],
       };
-    case GET_CATEGORIES_SUCCESS:
+    case categoryActionTypes.GET_CATEGORIES_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        categories: payload,
+        categories: action.categories,
         errors: [],
       };
-    case ADD_CATEGORY_SUCCESS:
-      const categories = [...state.categories, payload];
-
+    case categoryActionTypes.ADD_CATEGORY_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        categories,
+        categories: [...state.categories, action.category],
         errors: [],
       };
-    case DELETE_CATEGORY_SUCCESS:
+    case categoryActionTypes.DELETE_CATEGORY_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        categories: state.categories.filter(({ _id }) => _id !== payload),
+        categories: state.categories.filter(({ _id }) => _id !== action.id),
         errors: [],
       };
-    case GET_CATEGORIES_FAIL:
-    case ADD_CATEGORY_FAIL:
-    case DELETE_CATEGORY_FAIL:
+    case categoryActionTypes.GET_CATEGORIES_FAIL:
+    case categoryActionTypes.ADD_CATEGORY_FAIL:
+    case categoryActionTypes.DELETE_CATEGORY_FAIL:
       return {
         ...state,
         isLoading: false,
-        errors: payload,
+        errors: action.errors,
       };
     default:
       return state;

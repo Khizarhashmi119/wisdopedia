@@ -1,6 +1,7 @@
-import { validationResult } from "express-validator";
-import gravatar from "gravatar";
-import Comment from "../models/Comment.js";
+const { validationResult } = require("express-validator");
+const gravatar = require("gravatar");
+
+const Comment = require("../models/Comment");
 
 // @route  Get /api/v1/comments
 // @desc   Get comments.
@@ -94,4 +95,9 @@ const deleteComment = async (req, res) => {
   }
 };
 
-export { getComments, getBlogComments, addComment, deleteComment };
+module.exports = {
+  getComments,
+  getBlogComments,
+  addComment,
+  deleteComment,
+};

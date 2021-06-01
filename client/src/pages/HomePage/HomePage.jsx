@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 
-import BlogsPreviewList from "../../components/layout/BlogsPreviewList/BlogsPreviewList";
-import Quote from "../../components/layout/Quote/Quote";
+import BlogsPreviewList from "../../components/BlogsPreviewList/BlogsPreviewList";
+import Quote from "../../components/Quote/Quote";
+import Alerts from "../../components/Alerts/Alerts";
 
 import "./HomePage.css";
 
@@ -28,6 +29,7 @@ const HomePage = () => {
         <h3 className="quote-section-title">Inspiring quote of the day</h3>
         <Quote />
       </div>
+      <Alerts />
     </div>
   );
 };

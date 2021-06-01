@@ -1,11 +1,11 @@
-import { config } from "dotenv";
-import { Command } from "commander";
-import inquirer from "inquirer";
-import mongoose from "mongoose";
+const dotenv = require("dotenv");
+const commander = require("commander");
+const inquirer = require("inquirer");
+const mongoose = require("mongoose");
 
-import Admin from "./models/Admin.js";
+const Admin = require("./models/Admin");
 
-config();
+dotenv.config();
 
 const conn = mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
@@ -47,8 +47,7 @@ const questions = [
   },
 ];
 
-const program = new Command();
-const { prompt } = inquirer;
+const program = new commander.Command();
 
 program.version("1.0.0").description("Create admin CLI tool.");
 
@@ -57,14 +56,8 @@ program
   .alias("c")
   .description("Create admin.")
   .action(async () => {
-    const {
-      firstName,
-      middleName,
-      lastName,
-      email,
-      password,
-      confPassword,
-    } = await prompt(questions);
+    const { firstName, middleName, lastName, email, password, confPassword } =
+      await inquirer.prompt(questions);
 
     if (!middleName && !email && !password) {
       console.info("Please enter required fields.");

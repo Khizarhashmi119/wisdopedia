@@ -1,26 +1,21 @@
-import express from "express";
-import { body } from "express-validator";
+const express = require("express");
+const { body } = require("express-validator");
 
-import { authMiddleware } from "../../../middlewares/auth-middleware.js";
+const authMiddleware = require("../../../middlewares/auth-middleware");
 
-import {
-  getComments,
-  getBlogComments,
-  addComment,
-  deleteComment,
-} from "../../../controllers/comment-controllers.js";
+const commentControllers = require("../../../controllers/comment-controllers");
 
 const router = express.Router();
 
 // @route  GET /api/v1/comments
 // @desc   Get comments.
 // @access public
-router.get("/", getComments);
+router.get("/", commentControllers.getComments);
 
 // @route  GET /api/v1/comments/blogs/:blogId/
 // @desc   Get comments of a blog.
 // @access public
-router.get("/blogs/:blogId", getBlogComments);
+router.get("/blogs/:blogId", commentControllers.getBlogComments);
 
 // @route  Post /api/v1/comments/blogs/:blogId
 // @desc   Comment on a blog.
@@ -32,12 +27,12 @@ router.post(
     body("email", "Email is required.").isEmail(),
     body("text", "Text is required.").notEmpty(),
   ],
-  addComment
+  commentControllers.addComment
 );
 
 // @route  DELETE /api/v1/comments/:commentId
 // @desc   Delete comment on a blog.
 // @access private
-router.delete("/:commentId", authMiddleware, deleteComment);
+router.delete("/:commentId", authMiddleware, commentControllers.deleteComment);
 
-export default router;
+module.exports = router;
