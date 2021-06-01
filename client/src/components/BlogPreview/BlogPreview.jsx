@@ -6,7 +6,9 @@ const BlogPreview = ({ blog: { _id, title, description, imageName } }) => {
   const { push } = useHistory();
 
   const baseURL =
-    process.env.NODE_ENV === "production" ? "" : "http://localhost:5000";
+    process.env.NODE_ENV === "production"
+      ? "/api/v1"
+      : "http://localhost:5000/api/v1";
 
   return (
     <div className="blog-preview" onClick={() => push(`/blogs/${_id}`)}>
