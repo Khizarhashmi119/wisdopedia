@@ -1,20 +1,4 @@
-import {
-  GET_BLOGS,
-  GET_BLOG,
-  ADD_BLOG,
-  DELETE_BLOG,
-  UPDATE_BLOG,
-  GET_BLOGS_SUCCESS,
-  GET_BLOG_SUCCESS,
-  ADD_BLOG_SUCCESS,
-  DELETE_BLOG_SUCCESS,
-  UPDATE_BLOG_SUCCESS,
-  GET_BLOGS_FAIL,
-  GET_BLOG_FAIL,
-  ADD_BLOG_FAIL,
-  DELETE_BLOG_FAIL,
-  UPDATE_BLOG_FAIL,
-} from "../actionTypes/blogActionTypes";
+import * as blogActionTypes from "../actionTypes/blogActionTypes";
 
 const initState = {
   blog: null,
@@ -24,64 +8,62 @@ const initState = {
 };
 
 const blogsReducer = (state = initState, action) => {
-  const { type, payload } = action;
-
-  switch (type) {
-    case GET_BLOGS:
-    case GET_BLOG:
-    case ADD_BLOG:
-    case DELETE_BLOG:
-    case UPDATE_BLOG:
+  switch (action.type) {
+    case blogActionTypes.GET_BLOGS:
+    case blogActionTypes.GET_BLOG:
+    case blogActionTypes.ADD_BLOG:
+    case blogActionTypes.DELETE_BLOG:
+    case blogActionTypes.UPDATE_BLOG:
       return {
         ...state,
         isLoading: true,
         errors: [],
       };
-    case GET_BLOGS_SUCCESS:
+    case blogActionTypes.GET_BLOGS_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        blogs: payload,
+        blogs: action.blogs,
         errors: [],
       };
-    case GET_BLOG_SUCCESS:
+    case blogActionTypes.GET_BLOG_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        blog: payload,
+        blog: action.blog,
         errors: [],
       };
-    case ADD_BLOG_SUCCESS:
+    case blogActionTypes.ADD_BLOG_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        blogs: [payload, ...state.blogs],
+        blogs: [action.blog, ...state.blogs],
         errors: [],
       };
-    case DELETE_BLOG_SUCCESS:
+    case blogActionTypes.DELETE_BLOG_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        blogs: state.blogs.filter((blog) => blog._id !== payload),
+        blogs: state.blogs.filter((blog) => blog._id !== action.id),
       };
-    case UPDATE_BLOG_SUCCESS:
+    case blogActionTypes.UPDATE_BLOG_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        blog: payload.blog,
+        blog: action.blog,
         blogs: state.blogs.map((blog) => {
-          return blog._id !== payload.id ? blog : payload.blog;
+          return blog._id !== action.id ? blog : action.blog;
         }),
       };
-    case GET_BLOGS_FAIL:
-    case GET_BLOG_FAIL:
-    case ADD_BLOG_FAIL:
-    case DELETE_BLOG_FAIL:
-    case UPDATE_BLOG_FAIL:
+    case blogActionTypes.GET_BLOGS_FAIL:
+    case blogActionTypes.GET_BLOG_FAIL:
+    case blogActionTypes.ADD_BLOG_FAIL:
+    case blogActionTypes.DELETE_BLOG_FAIL:
+    case blogActionTypes.UPDATE_BLOG_FAIL:
       return {
         ...state,
         isLoading: false,
-        errors: payload,
+        errors: action.errors,
       };
     default:
       return state;

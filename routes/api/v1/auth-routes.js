@@ -1,7 +1,7 @@
-import express from "express";
-import { body } from "express-validator";
+const express = require("express");
+const { body } = require("express-validator");
 
-import { signin } from "../../../controllers/auth-controllers.js";
+const authControllers = require("../../../controllers/auth-controllers");
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.post(
     body("email", "Please enter valid email.").isEmail(),
     body("password", "Please enter password.").notEmpty(),
   ],
-  signin
+  authControllers.signin
 );
 
-export default router;
+module.exports = router;

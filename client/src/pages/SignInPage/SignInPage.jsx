@@ -11,6 +11,7 @@ const SignInPage = () => {
     email: "",
     password: "",
   });
+  const { email, password } = signInFormData;
 
   const dispatch = useDispatch();
   const { isAuthenticated, isLoading } = useSelector(
@@ -32,12 +33,11 @@ const SignInPage = () => {
   return !isAuthenticated ? (
     <div className="sign-in-page">
       <h2>Signin using email and password.</h2>
-      {isLoading && <h2 className="loading-text">Loading...</h2>}
       <form className="sign-in-form" onSubmit={handleSubmit}>
         <input
           type="email"
           name="email"
-          value={signInFormData.email}
+          value={email}
           id="sign-in-email"
           placeholder="Email*"
           onChange={handleChange}
@@ -46,7 +46,7 @@ const SignInPage = () => {
         <input
           type="password"
           name="password"
-          value={signInFormData.password}
+          value={password}
           id="sign-in-password"
           placeholder="Password*"
           onChange={handleChange}
@@ -54,7 +54,7 @@ const SignInPage = () => {
         />
         <small>* required fields</small>
         <button id="sign-in-btn" type="submit">
-          SIGN IN
+          {!isLoading ? "SIGN IN" : "Loading.."}
         </button>
       </form>
     </div>

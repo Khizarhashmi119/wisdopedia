@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
-import BlogsPreviewList from "../../components/layout/BlogsPreviewList/BlogsPreviewList";
+import BlogsPreviewList from "../../components/BlogsPreviewList/BlogsPreviewList";
 
 import "./BlogsPage.css";
 

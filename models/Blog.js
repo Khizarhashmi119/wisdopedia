@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const { ObjectId } = mongoose.Schema.Types;
 
@@ -46,4 +46,4 @@ const blogSchema = new mongoose.Schema(
 
 const Blog = mongoose.model("Blog", blogSchema);
 
-export default Blog;
+module.exports = Blog;

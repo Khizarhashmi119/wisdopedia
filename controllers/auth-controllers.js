@@ -1,7 +1,7 @@
-import { validationResult } from "express-validator";
-import jwt from "jsonwebtoken";
+const { validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
 
-import Admin from "../models/Admin.js";
+const Admin = require("../models/Admin");
 
 // @route  POST /api/auth/signin
 // @desc   Admin login route.
@@ -56,4 +56,4 @@ const signin = async (req, res) => {
   }
 };
 
-export { signin };
+module.exports = { signin };

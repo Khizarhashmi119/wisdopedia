@@ -1,0 +1,28 @@
+.add-category-form {
+  display: flex;
+  justify-content: center;
+}
+
+.input-category {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.add-category-btn {
+  border-color: #fc7978;
+  background-color: #fc7978;
+  border: none;
+  border-radius: 0.25rem;
+  box-shadow: -2px 7px 21px -10px rgba(0, 0, 0, 0.75);
+  color: #fff;
+  font-size: 1rem;
+  margin: 0 1rem;
+  padding: 0.5rem 1rem;
+  transition: background-color 0.6s linear;
+}
+
+.add-category-btn:disabled {
+  border-color: #bbb;
+  background-color: #bbb;
+  color: #fee;
+}

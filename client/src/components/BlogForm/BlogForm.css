@@ -1,0 +1,108 @@
+.input-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.blog-input {
+  font-size: 1rem;
+  padding: 0.5rem;
+}
+
+.blog-publish-btn-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+#blog-publish-btn {
+  border-color: #fc7978;
+  background-color: #fc7978;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 0.8rem;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  text-transform: uppercase;
+  transition: background-color 0.6s linear;
+}
+
+#blog-publish-btn:disabled {
+  border-color: #bbb;
+  background-color: #bbb;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fee;
+  font-size: 19px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  line-height: 0.8rem;
+  padding-top: 16px;
+  padding-right: 32px;
+  padding-bottom: 16px;
+  padding-left: 32px;
+  text-transform: uppercase;
+}
+
+#blog-title-input {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+::-webkit-file-upload-button {
+  border-color: #fc7978;
+  background-color: #fc7978;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  line-height: 0.8rem;
+  padding-top: 12px;
+  padding-right: 16px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  text-transform: uppercase;
+}
+
+#blog-author-input {
+  grid-column-start: 3;
+  grid-column-end: 5;
+}
+
+#blog-desc-input {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  resize: vertical;
+}
+
+.categories-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+  padding: 1rem;
+}
+
+.category-input-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5rem 1.5rem;
+  max-width: 300px;
+}
+
+.file-input-container {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+}
+
+#blog-image-input {
+  padding-left: 0;
+}

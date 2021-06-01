@@ -1,7 +1,7 @@
-import { validationResult } from "express-validator";
+const { validationResult } = require("express-validator");
 
-import Category from "../models/Category.js";
-import Blog from "../models/Blog.js";
+const Category = require("../models/Category");
+const Blog = require("../models/Blog");
 
 // @route  GET /api/v1/categories
 // @desc   Get categories.
@@ -9,7 +9,6 @@ import Blog from "../models/Blog.js";
 const getCategories = async (req, res) => {
   try {
     const categories = await Category.find({});
-
     return res.status(200).json(categories);
   } catch (err) {
     console.error(err.message);
@@ -90,4 +89,9 @@ const getCategoryBlogs = async (req, res) => {
   }
 };
 
-export { getCategories, addCategory, deleteCategory, getCategoryBlogs };
+module.exports = {
+  getCategories,
+  addCategory,
+  deleteCategory,
+  getCategoryBlogs,
+};

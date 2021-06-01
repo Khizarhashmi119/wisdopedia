@@ -17,7 +17,7 @@ const ContactPage = () => {
         </a>
         <a href="/">
           <div className="social-link">
-            <i class="fab fa-linkedin-in"></i>
+            <i className="fab fa-linkedin-in"></i>
           </div>
         </a>
       </div>
@@ -51,7 +51,7 @@ const ContactPage = () => {
           className="contact-input"
           type="text"
           name="firstName"
-          id="contact-firstName"
+          id="contact-first-name"
           placeholder="First Name*"
           required
         />
@@ -59,7 +59,7 @@ const ContactPage = () => {
           className="contact-input"
           type="text"
           name="lastName"
-          id="contact-lastName"
+          id="contact-last-ame"
           placeholder="Last Name"
         />
         <input
@@ -79,7 +79,7 @@ const ContactPage = () => {
         />
         <small>* required fields</small>
         <button className="contact-input" id="contact-send-btn" type="submit">
-          <i class="fas fa-paper-plane"></i> Send
+          <i className="fas fa-paper-plane"></i> Send
         </button>
       </form>
     </div>

@@ -1,28 +1,23 @@
 import axios from "axios";
+import { v4 } from "uuid";
 
-import {
-  GET_BLOGS,
-  GET_BLOG,
-  ADD_BLOG,
-  DELETE_BLOG,
-  UPDATE_BLOG,
-  GET_BLOGS_SUCCESS,
-  GET_BLOG_SUCCESS,
-  DELETE_BLOG_SUCCESS,
-  ADD_BLOG_SUCCESS,
-  UPDATE_BLOG_SUCCESS,
-} from "../actionTypes/blogActionTypes";
-import {
-  DELETE_COMMENT_BY_BLOGID,
-  DELETE_COMMENT_BY_BLOGID_SUCCESS,
-} from "../actionTypes/commentActionTypes";
+import * as blogActionTypes from "../actionTypes/blogActionTypes";
+import * as commentActionTypes from "../actionTypes/commentActionTypes";
+import * as alertActionTypes from "../actionTypes/alertActionTypes";
+
+const baseURL =
+  process.env.NODE_ENV === "production" ? "/" : "http://localhost:5000/api/v1";
 
 const getBlogsAction = () => {
   return async (dispatch) => {
     try {
-      dispatch({ type: GET_BLOGS });
-      const response = await axios.get("/api/v1/blogs");
-      dispatch({ type: GET_BLOGS_SUCCESS, payload: response.data });
+      dispatch({ type: blogActionTypes.GET_BLOGS });
+      const response = await axios.get(`${baseURL}/blogs`);
+
+      dispatch({
+        type: blogActionTypes.GET_BLOGS_SUCCESS,
+        blogs: response.data,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -30,13 +25,15 @@ const getBlogsAction = () => {
 };
 
 const getBlogAction = (blogId) => {
-  return async (dispatch /* getState */) => {
-    // const state = getState();
-    // console.log(state);
+  return async (dispatch) => {
     try {
-      dispatch({ type: GET_BLOG });
-      const response = await axios.get(`/api/v1/blogs/${blogId}`);
-      dispatch({ type: GET_BLOG_SUCCESS, payload: response.data });
+      dispatch({ type: blogActionTypes.GET_BLOG });
+      const response = await axios.get(`${baseURL}/blogs/${blogId}`);
+
+      dispatch({
+        type: blogActionTypes.GET_BLOG_SUCCESS,
+        blog: response.data,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -51,9 +48,13 @@ const addBlogAction = ({
   categories,
   image,
 }) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const {
+      authState: { token },
+    } = getState();
+
     try {
-      dispatch({ type: ADD_BLOG });
+      dispatch({ type: blogActionTypes.ADD_BLOG });
       const blogData = new FormData();
       blogData.append("title", title);
       blogData.append("description", description);
@@ -61,13 +62,38 @@ const addBlogAction = ({
       blogData.append("author", author);
       blogData.append("categories", categories);
       blogData.append("image", image);
-      const response = await axios.post("/api/v1/blogs/", blogData, {
+
+      const response = await axios.post(`${baseURL}/blogs/`, blogData, {
         headers: {
-          "x-auth-token": localStorage.getItem("token"),
+          "x-auth-token": token,
           "content-type": "multipart/form-data",
         },
       });
-      dispatch({ type: ADD_BLOG_SUCCESS, payload: response.data });
+
+      dispatch({
+        type: blogActionTypes.ADD_BLOG_SUCCESS,
+        blog: response.data,
+      });
+
+      const alertId = v4();
+
+      dispatch({
+        type: alertActionTypes.ADD_ALERT,
+        alert: {
+          id: alertId,
+          msg: "Successfully blog added.",
+          type: "success",
+        },
+      });
+
+      setTimeout(
+        () =>
+          dispatch({
+            type: alertActionTypes.DELETE_ALERT,
+            id: alertId,
+          }),
+        5000
+      );
     } catch (err) {
       console.error(err);
     }
@@ -75,17 +101,47 @@ const addBlogAction = ({
 };
 
 const deleteBlogAction = (blogId) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const {
+      authState: { token },
+    } = getState();
+
     try {
-      dispatch({ type: DELETE_BLOG });
-      dispatch({ type: DELETE_COMMENT_BY_BLOGID });
-      await axios.delete(`/api/v1/blogs/${blogId}`, {
+      dispatch({ type: blogActionTypes.DELETE_BLOG });
+      dispatch({ type: commentActionTypes.DELETE_COMMENT_BY_BLOGID });
+
+      await axios.delete(`${baseURL}/blogs/${blogId}`, {
         headers: {
-          "x-auth-token": localStorage.getItem("token"),
+          "x-auth-token": token,
         },
       });
-      dispatch({ type: DELETE_COMMENT_BY_BLOGID_SUCCESS, payload: blogId });
-      dispatch({ type: DELETE_BLOG_SUCCESS, payload: blogId });
+
+      dispatch({
+        type: commentActionTypes.DELETE_COMMENT_BY_BLOGID_SUCCESS,
+        blogId: blogId,
+      });
+
+      dispatch({ type: blogActionTypes.DELETE_BLOG_SUCCESS, id: blogId });
+
+      const alertId = v4();
+
+      dispatch({
+        type: alertActionTypes.ADD_ALERT,
+        alert: {
+          id: alertId,
+          msg: "Successfully blog deleted.",
+          type: "success",
+        },
+      });
+
+      setTimeout(
+        () =>
+          dispatch({
+            type: alertActionTypes.DELETE_ALERT,
+            id: alertId,
+          }),
+        5000
+      );
     } catch (err) {
       console.error(err);
     }
@@ -96,9 +152,13 @@ const updateBlogAction = (
   blogId,
   { title, description, body, author, categories, image }
 ) => {
-  return async (dispatch) => {
+  return async (dispatch, getState) => {
+    const {
+      authState: { token },
+    } = getState();
+
     try {
-      dispatch({ type: UPDATE_BLOG });
+      dispatch({ type: blogActionTypes.UPDATE_BLOG });
       const blogData = new FormData();
       blogData.append("title", title);
       blogData.append("description", description);
@@ -106,16 +166,39 @@ const updateBlogAction = (
       blogData.append("author", author);
       blogData.append("categories", categories);
       blogData.append("image", image);
-      const response = await axios.put(`/api/v1/blogs/${blogId}`, blogData, {
+
+      const response = await axios.put(`${baseURL}/blogs/${blogId}`, blogData, {
         headers: {
-          "x-auth-token": localStorage.getItem("token"),
+          "x-auth-token": token,
           "content-type": "multipart/form-data",
         },
       });
+
       dispatch({
-        type: UPDATE_BLOG_SUCCESS,
-        payload: { id: blogId, blog: response.data },
+        type: blogActionTypes.UPDATE_BLOG_SUCCESS,
+        id: blogId,
+        blog: response.data,
       });
+
+      const alertId = v4();
+
+      dispatch({
+        type: alertActionTypes.ADD_ALERT,
+        alert: {
+          id: alertId,
+          msg: "Successfully blog updated.",
+          type: "success",
+        },
+      });
+
+      setTimeout(
+        () =>
+          dispatch({
+            type: alertActionTypes.DELETE_ALERT,
+            id: alertId,
+          }),
+        5000
+      );
     } catch (err) {
       console.error(err);
     }

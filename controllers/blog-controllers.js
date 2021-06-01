@@ -1,8 +1,8 @@
-import { validationResult } from "express-validator";
-import fs from "fs";
+const { validationResult } = require("express-validator");
+const fs = require("fs");
 
-import Blog from "../models/Blog.js";
-import Comment from "../models/Comment.js";
+const Blog = require("../models/Blog");
+const Comment = require("../models/Comment");
 
 // @route  GET /api/v1/blogs
 // @desc   Get blogs.
@@ -97,7 +97,7 @@ const deleteBlog = async (req, res) => {
   try {
     // Delete Blog.
     const blog = await Blog.findById(blogId);
-    const imagePath = `./client/build/uploads/${blog.imageName}`;
+    const imagePath = `./uploads/${blog.imageName}`;
 
     if (blog.admin.toString() !== adminId) {
       return res
@@ -151,7 +151,7 @@ const updateBlog = async (req, res) => {
     if (req.file) {
       const { filename: imageName } = req.file;
       const blog = await Blog.findById(blogId);
-      const imagePath = `./client/build/uploads/${blog.imageName}`;
+      const imagePath = `./uploads/${blog.imageName}`;
 
       if (fs.existsSync(imagePath)) {
         fs.unlinkSync(imagePath);
@@ -206,4 +206,10 @@ const updateBlog = async (req, res) => {
   }
 };
 
-export { getBlogs, getBlog, addBlog, deleteBlog, updateBlog };
+module.exports = {
+  getBlogs,
+  getBlog,
+  addBlog,
+  deleteBlog,
+  updateBlog,
+};
