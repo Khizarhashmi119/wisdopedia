@@ -1,7 +1,7 @@
 const express = require("express");
 const { body } = require("express-validator");
 
-const newsLetterControllers = require("../../../controllers/news-letter-controllers");
+const newsLetterControllers = require("../../../controllers/newsLetterControllers");
 
 const router = express.Router();
 

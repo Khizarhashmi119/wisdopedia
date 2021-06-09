@@ -45,6 +45,7 @@ const getBlogAction = (blogId) => {
 const addBlogAction = ({
   title,
   description,
+  tags,
   body,
   author,
   categories,
@@ -60,6 +61,7 @@ const addBlogAction = ({
       const blogData = new FormData();
       blogData.append("title", title);
       blogData.append("description", description);
+      blogData.append("tags", tags);
       blogData.append("body", body);
       blogData.append("author", author);
       blogData.append("categories", categories);
@@ -97,7 +99,37 @@ const addBlogAction = ({
         5000
       );
     } catch (err) {
-      console.error(err);
+      if (err.response) {
+        const errors = err.response.data.errors;
+
+        dispatch({ type: blogActionTypes.ADD_BLOG_FAIL, errors });
+
+        errors.forEach((error) => {
+          const alertId = v4();
+
+          dispatch({
+            type: alertActionTypes.ADD_ALERT,
+            alert: {
+              id: alertId,
+              msg: error.msg,
+              type: "error",
+            },
+          });
+
+          setTimeout(
+            () =>
+              dispatch({
+                type: alertActionTypes.DELETE_ALERT,
+                id: alertId,
+              }),
+            5000
+          );
+        });
+      } else if (err.request) {
+        console.error(err);
+      } else {
+        console.error(err);
+      }
     }
   };
 };
@@ -145,14 +177,44 @@ const deleteBlogAction = (blogId) => {
         5000
       );
     } catch (err) {
-      console.error(err);
+      if (err.response) {
+        const errors = err.response.data.errors;
+
+        dispatch({ type: blogActionTypes.DELETE_BLOG_FAIL, errors });
+
+        errors.forEach((error) => {
+          const alertId = v4();
+
+          dispatch({
+            type: alertActionTypes.ADD_ALERT,
+            alert: {
+              id: alertId,
+              msg: error.msg,
+              type: "error",
+            },
+          });
+
+          setTimeout(
+            () =>
+              dispatch({
+                type: alertActionTypes.DELETE_ALERT,
+                id: alertId,
+              }),
+            5000
+          );
+        });
+      } else if (err.request) {
+        console.error(err);
+      } else {
+        console.error(err);
+      }
     }
   };
 };
 
 const updateBlogAction = (
   blogId,
-  { title, description, body, author, categories, image }
+  { title, description, tags, body, author, categories, image }
 ) => {
   return async (dispatch, getState) => {
     const {
@@ -164,6 +226,7 @@ const updateBlogAction = (
       const blogData = new FormData();
       blogData.append("title", title);
       blogData.append("description", description);
+      blogData.append("tags", tags);
       blogData.append("body", body);
       blogData.append("author", author);
       blogData.append("categories", categories);
@@ -202,7 +265,37 @@ const updateBlogAction = (
         5000
       );
     } catch (err) {
-      console.error(err);
+      if (err.response) {
+        const errors = err.response.data.errors;
+
+        dispatch({ type: blogActionTypes.UPDATE_BLOG_FAIL, errors });
+
+        errors.forEach((error) => {
+          const alertId = v4();
+
+          dispatch({
+            type: alertActionTypes.ADD_ALERT,
+            alert: {
+              id: alertId,
+              msg: error.msg,
+              type: "error",
+            },
+          });
+
+          setTimeout(
+            () =>
+              dispatch({
+                type: alertActionTypes.DELETE_ALERT,
+                id: alertId,
+              }),
+            5000
+          );
+        });
+      } else if (err.request) {
+        console.error(err);
+      } else {
+        console.error(err);
+      }
     }
   };
 };

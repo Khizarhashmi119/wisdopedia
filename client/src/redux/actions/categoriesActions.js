@@ -71,7 +71,37 @@ const addCategoryAction = (category) => {
         5000
       );
     } catch (err) {
-      console.error(err);
+      if (err.response) {
+        const errors = err.response.data.errors;
+
+        dispatch({ type: categoryActionTypes.ADD_CATEGORY_FAIL, errors });
+
+        errors.forEach((error) => {
+          const alertId = v4();
+
+          dispatch({
+            type: alertActionTypes.ADD_ALERT,
+            alert: {
+              id: alertId,
+              msg: error.msg,
+              type: "error",
+            },
+          });
+
+          setTimeout(
+            () =>
+              dispatch({
+                type: alertActionTypes.DELETE_ALERT,
+                id: alertId,
+              }),
+            5000
+          );
+        });
+      } else if (err.request) {
+        console.error(err);
+      } else {
+        console.error(err);
+      }
     }
   };
 };
@@ -116,7 +146,37 @@ const deleteCategoryAction = (categoryId) => {
         5000
       );
     } catch (err) {
-      console.error(err);
+      if (err.response) {
+        const errors = err.response.data.errors;
+
+        dispatch({ type: categoryActionTypes.DELETE_CATEGORY_FAIL, errors });
+
+        errors.forEach((error) => {
+          const alertId = v4();
+
+          dispatch({
+            type: alertActionTypes.ADD_ALERT,
+            alert: {
+              id: alertId,
+              msg: error.msg,
+              type: "error",
+            },
+          });
+
+          setTimeout(
+            () =>
+              dispatch({
+                type: alertActionTypes.DELETE_ALERT,
+                id: alertId,
+              }),
+            5000
+          );
+        });
+      } else if (err.request) {
+        console.error(err);
+      } else {
+        console.error(err);
+      }
     }
   };
 };

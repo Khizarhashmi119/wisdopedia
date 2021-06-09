@@ -12,7 +12,7 @@ const blogSchema = new mongoose.Schema(
     title: {
       type: String,
       required: true,
-      maxlength: 32,
+      maxlength: 200,
       trim: true,
     },
     author: {
@@ -37,6 +37,9 @@ const blogSchema = new mongoose.Schema(
         ref: "Category",
       },
     ],
+    tags: {
+      type: [String],
+    },
     imageName: {
       type: String,
     },

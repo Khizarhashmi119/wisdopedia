@@ -3,8 +3,8 @@ const { body } = require("express-validator");
 const multer = require("multer");
 const _ = require("lodash");
 
-const authMiddleware = require("../../../middlewares/auth-middleware");
-const blogControllers = require("../../../controllers/blog-controllers");
+const authMiddleware = require("../../../middlewares/authMiddleware");
+const blogControllers = require("../../../controllers/blogControllers");
 
 const router = express.Router();
 const storage = multer.diskStorage({
@@ -40,46 +40,29 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// @route  GET /api/v1/blogs
-// @desc   Get blogs.
-// @access public
 router.get("/", blogControllers.getBlogs);
-
-// @route  GET /api/v1/blogs/:blogId
-// @desc   Get blog.
-// @access public
 router.get("/:blogId", blogControllers.getBlog);
-
-// @route  POST /api/v1/blogs
-// @desc   Add blog.
-// @access private
 router.post(
   "/",
   authMiddleware,
   upload.single("image"),
   [
-    body("title", "Title is required.").notEmpty(),
+    body("title", "Title is required.").notEmpty().isLength({ max: 200 }),
     body("body", "Body is required.").notEmpty(),
+    body("tags", "tags is required.").notEmpty(),
     body("author", "Author is required.").notEmpty(),
   ],
   blogControllers.addBlog
 );
-
-// @route  DELETE /api/v1/blogs/:blogId
-// @desc   Delete blog.
-// @access private
 router.delete("/:blogId", authMiddleware, blogControllers.deleteBlog);
-
-// @route  Put /api/v1/blogs/:blogId
-// @desc   Update blog.
-// @access private
 router.put(
   "/:blogId",
   authMiddleware,
   upload.single("image"),
   [
-    body("title", "Title is required.").notEmpty(),
+    body("title", "Title is required.").notEmpty().isLength({ max: 200 }),
     body("body", "Body is required.").notEmpty(),
+    body("tags", "Tags is required.").notEmpty(),
     body("author", "Author is required.").notEmpty(),
   ],
   blogControllers.updateBlog

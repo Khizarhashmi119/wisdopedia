@@ -6,6 +6,7 @@ import moment from "moment";
 import AddCommentForm from "../../components/AddCommentForm/AddCommentForm";
 import CommentList from "../../components/CommentList/CommentList";
 import ShareButtons from "../../components/ShareButtons/ShareButtons";
+import BlogTags from "../../components/BlogTags/BlogTags";
 import Alerts from "../../components/Alerts/Alerts";
 import { getBlogCommentsAction } from "../../redux/actions/commentsActions";
 import { getBlogAction } from "../../redux/actions/blogsActions";
@@ -60,6 +61,7 @@ const BlogDetailPage = () => {
               className="blog-body"
               dangerouslySetInnerHTML={{ __html: blog.body }}
             ></div>
+            <BlogTags tags={blog.tags} />
             <AddCommentForm blogId={blog._id} />
           </div>
         ) : (

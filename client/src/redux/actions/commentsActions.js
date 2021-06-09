@@ -78,7 +78,37 @@ const addCommentAction = (blogId, name, email, text) => {
         5000
       );
     } catch (err) {
-      console.error(err);
+      if (err.response) {
+        const errors = err.response.data.errors;
+
+        dispatch({ type: commentActionTypes.ADD_COMMENT_FAIL, errors });
+
+        errors.forEach((error) => {
+          const alertId = v4();
+
+          dispatch({
+            type: alertActionTypes.ADD_ALERT,
+            alert: {
+              id: alertId,
+              msg: error.msg,
+              type: "error",
+            },
+          });
+
+          setTimeout(
+            () =>
+              dispatch({
+                type: alertActionTypes.DELETE_ALERT,
+                id: alertId,
+              }),
+            5000
+          );
+        });
+      } else if (err.request) {
+        console.error(err);
+      } else {
+        console.error(err);
+      }
     }
   };
 };
@@ -123,7 +153,37 @@ const deleteCommentAction = (commentId) => {
         5000
       );
     } catch (err) {
-      console.error(err);
+      if (err.response) {
+        const errors = err.response.data.errors;
+
+        dispatch({ type: commentActionTypes.DELETE_COMMENT_FAIL, errors });
+
+        errors.forEach((error) => {
+          const alertId = v4();
+
+          dispatch({
+            type: alertActionTypes.ADD_ALERT,
+            alert: {
+              id: alertId,
+              msg: error.msg,
+              type: "error",
+            },
+          });
+
+          setTimeout(
+            () =>
+              dispatch({
+                type: alertActionTypes.DELETE_ALERT,
+                id: alertId,
+              }),
+            5000
+          );
+        });
+      } else if (err.request) {
+        console.error(err);
+      } else {
+        console.error(err);
+      }
     }
   };
 };

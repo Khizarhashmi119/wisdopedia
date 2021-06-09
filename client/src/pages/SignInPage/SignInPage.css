@@ -9,10 +9,13 @@
   width: 100%;
 }
 
+.sign-in-page-title {
+  text-align: center;
+}
+
 .sign-in-form {
   display: flex;
   flex-direction: column;
-  width: 30%;
 }
 
 #sign-in-email,

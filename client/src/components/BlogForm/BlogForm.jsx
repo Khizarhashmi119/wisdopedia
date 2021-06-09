@@ -12,6 +12,7 @@ import "./BlogForm.css";
 const BlogForm = ({ blog }) => {
   const [blogFormData, setBlogFormData] = useState({
     title: blog ? blog.title : "",
+    tags: blog ? blog.tags.join(",") : "",
     description: blog ? blog.description : "",
     body: blog ? blog.body : "",
     checkedCategories: blog ? blog.categories.map((blog) => blog._id) : [],
@@ -22,7 +23,7 @@ const BlogForm = ({ blog }) => {
     (state) => state.categoriesState
   );
   const dispatch = useDispatch();
-  const { title, description, body, author, checkedCategories, image } =
+  const { title, description, tags, body, author, checkedCategories, image } =
     blogFormData;
 
   const inputHandleChange = (e) => {
@@ -76,6 +77,7 @@ const BlogForm = ({ blog }) => {
           updateBlogAction(blog._id, {
             title,
             description,
+            tags,
             body,
             author,
             categories: checkedCategories.join(", "),
@@ -86,6 +88,7 @@ const BlogForm = ({ blog }) => {
           addBlogAction({
             title,
             description,
+            tags,
             body,
             author,
             categories: checkedCategories.join(", "),
@@ -114,30 +117,41 @@ const BlogForm = ({ blog }) => {
       </div>
       <div className="input-container">
         <input
+          id="blog-title-input"
           className="blog-input"
           type="text"
           name="title"
           value={title}
-          onChange={inputHandleChange}
-          id="blog-title-input"
           placeholder="Title*"
+          maxLength="200"
+          onChange={inputHandleChange}
         />
         <input
+          id="blog-author-input"
           className="blog-input"
           type="text"
           name="author"
           value={author}
-          onChange={inputHandleChange}
-          id="blog-author-input"
           placeholder="Author*"
+          onChange={inputHandleChange}
+        />
+        <input
+          id="blog-tags-input"
+          className="blog-input"
+          type="text"
+          name="tags"
+          value={tags}
+          placeholder="Tags*"
+          onChange={inputHandleChange}
         />
         <textarea
+          id="blog-desc-input"
           className="blog-input"
           name="description"
           value={description}
-          onChange={inputHandleChange}
-          id="blog-desc-input"
           placeholder="Description*"
+          maxLength="150"
+          onChange={inputHandleChange}
         ></textarea>
       </div>
       <Editor
@@ -177,8 +191,8 @@ const BlogForm = ({ blog }) => {
       </fieldset>
       <div className="file-input-container">
         <input
-          className="blog-input"
           id="blog-image-input"
+          className="blog-input"
           type="file"
           onChange={fileInputHandleChange}
         />
