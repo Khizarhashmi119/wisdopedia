@@ -40,6 +40,11 @@ const blogSchema = new mongoose.Schema(
     tags: {
       type: [String],
     },
+    slug: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     imageName: {
       type: String,
     },

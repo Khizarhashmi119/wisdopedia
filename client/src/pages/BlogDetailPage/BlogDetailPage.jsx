@@ -14,7 +14,7 @@ import { getBlogAction } from "../../redux/actions/blogsActions";
 import "./BlogDetailPage.css";
 
 const BlogDetailPage = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const { blog, isLoading: isBlogLoading } = useSelector(
     (state) => state.blogsState
   );
@@ -24,9 +24,9 @@ const BlogDetailPage = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBlogAction(id));
-    dispatch(getBlogCommentsAction(id));
-  }, [dispatch, id]);
+    dispatch(getBlogAction(slug));
+    dispatch(getBlogCommentsAction(slug));
+  }, [dispatch, slug]);
 
   const blogUrl = document.location.href;
   const baseURL =

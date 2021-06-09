@@ -2,6 +2,7 @@ const { validationResult } = require("express-validator");
 const gravatar = require("gravatar");
 
 const Comment = require("../models/Comment");
+const Blog = require("../models/Blog");
 
 // @route  Get /api/v1/comments
 // @desc   Get comments.
@@ -24,10 +25,13 @@ const getComments = async (req, res) => {
 // @desc   Get comments of a blog.
 // @access public
 const getBlogComments = async (req, res) => {
-  const { blogId: blog } = req.params;
+  const { slug } = req.params;
 
   try {
-    const comments = await Comment.find({ blog }).sort({ createdAt: -1 });
+    const blog = await Blog.findOne({ slug });
+    const comments = await Comment.find({ blog: blog._id }).sort({
+      createdAt: -1,
+    });
     return res.status(200).json(comments);
   } catch (err) {
     console.error(err.message);

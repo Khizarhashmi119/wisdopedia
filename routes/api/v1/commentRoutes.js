@@ -8,7 +8,7 @@ const commentControllers = require("../../../controllers/commentControllers");
 const router = express.Router();
 
 router.get("/", commentControllers.getComments);
-router.get("/blogs/:blogId", commentControllers.getBlogComments);
+router.get("/blogs/:slug", commentControllers.getBlogComments);
 router.post(
   "/blogs/:blogId",
   [

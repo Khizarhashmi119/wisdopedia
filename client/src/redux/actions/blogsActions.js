@@ -26,11 +26,11 @@ const getBlogsAction = () => {
   };
 };
 
-const getBlogAction = (blogId) => {
+const getBlogAction = (slug) => {
   return async (dispatch) => {
     try {
       dispatch({ type: blogActionTypes.GET_BLOG });
-      const response = await axios.get(`${baseURL}/blogs/${blogId}`);
+      const response = await axios.get(`${baseURL}/blogs/${slug}`);
 
       dispatch({
         type: blogActionTypes.GET_BLOG_SUCCESS,

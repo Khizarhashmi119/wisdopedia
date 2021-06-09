@@ -25,12 +25,12 @@ const getCommentsAction = () => {
   };
 };
 
-const getBlogCommentsAction = (blogId) => {
+const getBlogCommentsAction = (slug) => {
   return async (dispatch) => {
     try {
       dispatch({ type: commentActionTypes.GET_COMMENTS });
 
-      const response = await axios.get(`${baseURL}/comments/blogs/${blogId}`);
+      const response = await axios.get(`${baseURL}/comments/blogs/${slug}`);
 
       dispatch({
         type: commentActionTypes.GET_COMMENTS_SUCCESS,
