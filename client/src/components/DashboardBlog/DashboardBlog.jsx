@@ -5,13 +5,13 @@ import { deleteBlogAction } from "../../redux/actions/blogsActions";
 
 import "./DashboardBlog.css";
 
-const DashboardBlog = ({ blog: { _id, title }, index }) => {
+const DashboardBlog = ({ blog: { _id, title, slug }, index }) => {
   const { push } = useHistory();
   const dispatch = useDispatch();
 
   const handleClick1 = (e) => {
     e.stopPropagation();
-    push(`/blogs/${_id}/update`);
+    push(`/blogs/${slug}/update`);
   };
 
   const handleClick2 = (e) => {
@@ -23,7 +23,7 @@ const DashboardBlog = ({ blog: { _id, title }, index }) => {
   };
 
   const handleClick3 = () => {
-    push(`/blogs/${_id}`);
+    push(`/blogs/${slug}`);
   };
 
   return (

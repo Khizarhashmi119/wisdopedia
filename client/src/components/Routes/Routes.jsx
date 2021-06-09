@@ -20,10 +20,10 @@ const Routes = () => {
       <ProtectedRoute exact path="/blogs/add" component={AddBlogPage} />
       <ProtectedRoute
         exact
-        path="/blogs/:id/update"
+        path="/blogs/:slug/update"
         component={UpdateBlogPage}
       />
-      <Route exact path="/blogs/:id" component={BlogDetailPage} />
+      <Route exact path="/blogs/:slug" component={BlogDetailPage} />
       <Route exact path="/admin" component={SignInPage} />
       <ProtectedRoute exact path="/dashboard" component={DashboardPage} />
       <Route exact component={PageNotFoundPage} />

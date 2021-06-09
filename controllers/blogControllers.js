@@ -1,5 +1,6 @@
 const { validationResult } = require("express-validator");
 const fs = require("fs");
+const _ = require("lodash");
 
 const Blog = require("../models/Blog");
 const Comment = require("../models/Comment");
@@ -27,10 +28,10 @@ const getBlogs = async (req, res) => {
 // @desc   Get blog.
 // @access public
 const getBlog = async (req, res) => {
-  const { blogId } = req.params;
+  const { slug } = req.params;
 
   try {
-    const blog = await Blog.findById(blogId)
+    const blog = await Blog.findOne({ slug })
       .sort({ createdAt: -1 })
       .populate("admin", ["firstName", "middleName", "lastName"])
       .populate("categories");
@@ -73,6 +74,7 @@ const addBlog = async (req, res) => {
       tags: tags.split(",").map((tag) => tag.trim()),
       author,
       categories: categories.split(",").map((catogoryId) => catogoryId.trim()),
+      slug: _.kebabCase(title),
       imageName: filename,
     });
 
@@ -170,6 +172,7 @@ const updateBlog = async (req, res) => {
             categories: categories
               .split(",")
               .map((catogoryId) => catogoryId.trim()),
+            slug: _.kebabCase(title),
             imageName,
           },
         },
@@ -193,6 +196,7 @@ const updateBlog = async (req, res) => {
           categories: categories
             .split(",")
             .map((catogoryId) => catogoryId.trim()),
+          slug: _.kebabCase(title),
         },
       },
       {

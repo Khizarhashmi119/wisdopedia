@@ -9,13 +9,13 @@ import { getBlogAction } from "../../redux/actions/blogsActions";
 import "./UpdateBlogPage.css";
 
 const UpdateBlogPage = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const { blog, isLoading } = useSelector((state) => state.blogsState);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getBlogAction(id));
-  }, [dispatch, id]);
+    dispatch(getBlogAction(slug));
+  }, [dispatch, slug]);
 
   return (
     <div className="update-blog">

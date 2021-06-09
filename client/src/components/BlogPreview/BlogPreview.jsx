@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 
 import "./BlogPreview.css";
 
-const BlogPreview = ({ blog: { _id, title, description, imageName } }) => {
+const BlogPreview = ({ blog: { title, description, slug, imageName } }) => {
   const { push } = useHistory();
 
   const baseURL =
@@ -11,7 +11,7 @@ const BlogPreview = ({ blog: { _id, title, description, imageName } }) => {
       : "http://localhost:5000/api/v1";
 
   return (
-    <div className="blog-preview" onClick={() => push(`/blogs/${_id}`)}>
+    <div className="blog-preview" onClick={() => push(`/blogs/${slug}`)}>
       <div
         className="bg-img"
         style={{ backgroundImage: `url('${baseURL}/${imageName}')` }}

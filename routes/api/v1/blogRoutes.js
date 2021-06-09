@@ -41,7 +41,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/", blogControllers.getBlogs);
-router.get("/:blogId", blogControllers.getBlog);
+router.get("/:slug", blogControllers.getBlog);
 router.post(
   "/",
   authMiddleware,
