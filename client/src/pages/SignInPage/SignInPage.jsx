@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
+import Alerts from "../../components/Alerts/Alerts";
 import { signInAdminAction } from "../../redux/actions/authActions";
 
 import "./SignInPage.css";
@@ -32,7 +33,7 @@ const SignInPage = () => {
 
   return !isAuthenticated ? (
     <div className="sign-in-page">
-      <h2>Signin using email and password.</h2>
+      <h2 className="sign-in-page-title">Signin using email and password.</h2>
       <form className="sign-in-form" onSubmit={handleSubmit}>
         <input
           type="email"
@@ -57,6 +58,7 @@ const SignInPage = () => {
           {!isLoading ? "SIGN IN" : "Loading.."}
         </button>
       </form>
+      <Alerts />
     </div>
   ) : (
     <Redirect to="/dashboard" />

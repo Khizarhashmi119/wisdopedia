@@ -86,17 +86,17 @@ const Footer = () => {
             <h3 className="footer-site-branding">Wisdopedia</h3>
             <span>Follow us on.</span>
             <div className="social-links">
-              <a href="/">
+              <a href="https://www.facebook.com/officialwisdopedia">
                 <div className="social-link">
                   <i className="fab fa-facebook-f"></i>
                 </div>
               </a>
-              <a href="/">
+              <a href="https://www.instagram.com/officialwisdopedia">
                 <div className="social-link">
                   <i className="fab fa-instagram"></i>
                 </div>
               </a>
-              <a href="/">
+              <a href="https://www.linkedin.com/company/wisdopedia">
                 <div className="social-link">
                   <i className="fab fa-linkedin-in"></i>
                 </div>

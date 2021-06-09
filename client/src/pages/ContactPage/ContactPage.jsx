@@ -5,17 +5,17 @@ const ContactPage = () => {
     <div className="contact-page">
       <p>You can follow us on</p>
       <div className="social-links">
-        <a href="/">
+        <a href="https://www.facebook.com/officialwisdopedia">
           <div className="social-link">
             <i className="fab fa-facebook-f"></i>
           </div>
         </a>
-        <a href="/">
+        <a href="https://www.instagram.com/officialwisdopedia">
           <div className="social-link">
             <i className="fab fa-instagram"></i>
           </div>
         </a>
-        <a href="/">
+        <a href="https://www.linkedin.com/company/wisdopedia">
           <div className="social-link">
             <i className="fab fa-linkedin-in"></i>
           </div>

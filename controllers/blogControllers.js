@@ -60,7 +60,7 @@ const addBlog = async (req, res) => {
   }
 
   const { id } = req.admin;
-  const { title, description, body, author, categories } = req.body;
+  const { title, description, body, tags, author, categories } = req.body;
   const { filename } = req.file;
 
   try {
@@ -70,6 +70,7 @@ const addBlog = async (req, res) => {
       title,
       description,
       body,
+      tags: tags.split(",").map((tag) => tag.trim()),
       author,
       categories: categories.split(",").map((catogoryId) => catogoryId.trim()),
       imageName: filename,
@@ -137,7 +138,7 @@ const updateBlog = async (req, res) => {
   const { blogId } = req.params;
   const { id: adminId } = req.admin;
 
-  const { title, description, body, author, categories } = req.body;
+  const { title, description, body, tags, author, categories } = req.body;
 
   try {
     const blog = await Blog.findById(blogId);
@@ -164,6 +165,7 @@ const updateBlog = async (req, res) => {
             title,
             description,
             body,
+            tags: tags.split(",").map((tag) => tag.trim()),
             author,
             categories: categories
               .split(",")
@@ -186,6 +188,7 @@ const updateBlog = async (req, res) => {
           title,
           description,
           body,
+          tags: tags.split(",").map((tag) => tag.trim()),
           author,
           categories: categories
             .split(",")

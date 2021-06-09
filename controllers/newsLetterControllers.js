@@ -70,7 +70,7 @@ const unsubscribeNewsLetter = async (req, res) => {
 
     return res
       .status(200)
-      .json({ msg: `This user is now ${response.status}.` });
+      .json({ messages: [{ msg: `This user is now ${response.status}.` }] });
   } catch (err) {
     console.error(err.message);
     return res

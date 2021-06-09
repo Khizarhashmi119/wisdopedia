@@ -52,8 +52,38 @@ const signInAdminAction = (email, password) => {
           }),
         5000
       );
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      if (err.response) {
+        const errors = err.response.data.errors;
+
+        dispatch({ type: authActionTypes.SIGN_IN_ADMIN_FAIL, errors });
+
+        errors.forEach((error) => {
+          const alertId = v4();
+
+          dispatch({
+            type: alertActionTypes.ADD_ALERT,
+            alert: {
+              id: alertId,
+              msg: error.msg,
+              type: "error",
+            },
+          });
+
+          setTimeout(
+            () =>
+              dispatch({
+                type: alertActionTypes.DELETE_ALERT,
+                id: alertId,
+              }),
+            5000
+          );
+        });
+      } else if (err.request) {
+        console.error(err);
+      } else {
+        console.error(err);
+      }
     }
   };
 };

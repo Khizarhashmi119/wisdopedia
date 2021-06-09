@@ -1,14 +1,13 @@
 const dotenv = require("dotenv");
 const express = require("express");
 const cors = require("cors");
-const path = require("path");
 
 const connectDB = require("./db");
-const authRoutes = require("./routes/api/v1/auth-routes");
-const blogRoutes = require("./routes/api/v1/blog-routes");
-const commentRoutes = require("./routes/api/v1/comment-routes");
-const categoryRoutes = require("./routes/api/v1/category-routes");
-const newsLetterRoutes = require("./routes/api/v1/news-letter-routes");
+const authRoutes = require("./routes/api/v1/authRoutes");
+const blogRoutes = require("./routes/api/v1/blogRoutes");
+const commentRoutes = require("./routes/api/v1/commentRoutes");
+const categoryRoutes = require("./routes/api/v1/categoryRoutes");
+const newsLetterRoutes = require("./routes/api/v1/newsLetterRoutes");
 
 const app = express();
 
@@ -31,12 +30,6 @@ app.use("/api/v1/blogs", blogRoutes);
 app.use("/api/v1/comments", commentRoutes);
 app.use("/api/v1/categories", categoryRoutes);
 app.use("/api/v1/news-letter", newsLetterRoutes);
-
-if (process.env.NODE_ENV === "production") {
-  app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-  });
-}
 
 app.listen(process.env.PORT, () =>
   console.log(

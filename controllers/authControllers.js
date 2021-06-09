@@ -42,7 +42,7 @@ const signin = async (req, res) => {
     };
 
     const token = jwt.sign(payload, process.env.SECRET_KEY, {
-      expiresIn: 900000,
+      expiresIn: 3600,
     });
 
     return res.status(200).json({
