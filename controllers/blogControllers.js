@@ -12,7 +12,6 @@ const getBlogs = async (req, res) => {
   try {
     const blogs = await Blog.find({})
       .sort({ createdAt: -1 })
-      .populate("admin", ["firstName", "middleName", "lastName"])
       .populate("categories");
 
     return res.status(200).json(blogs);
@@ -33,7 +32,6 @@ const getBlog = async (req, res) => {
   try {
     const blog = await Blog.findOne({ slug })
       .sort({ createdAt: -1 })
-      .populate("admin", ["firstName", "middleName", "lastName"])
       .populate("categories");
 
     if (!blog) {

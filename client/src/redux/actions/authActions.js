@@ -9,13 +9,6 @@ const baseURL =
     ? "/api/v1"
     : "http://localhost:5000/api/v1";
 
-const setTokenAction = (token) => {
-  return {
-    type: authActionTypes.SET_TOKEN,
-    token,
-  };
-};
-
 const signInAdminAction = (email, password) => {
   return async (dispatch) => {
     try {
@@ -32,6 +25,19 @@ const signInAdminAction = (email, password) => {
         type: authActionTypes.SIGN_IN_ADMIN_SUCCESS,
         token,
       });
+
+      setTimeout(() => {
+        const alertId = v4();
+
+        dispatch({
+          type: alertActionTypes.ADD_ALERT,
+          alert: {
+            id: alertId,
+            msg: "Your session has been expired. Please logout then login.",
+            type: "warn",
+          },
+        });
+      }, 3600000);
 
       const alertId = v4();
 
@@ -92,4 +98,4 @@ const signOutAdminAction = () => {
   return { type: authActionTypes.SIGN_OUT_ADMIN };
 };
 
-export { setTokenAction, signInAdminAction, signOutAdminAction };
+export { signInAdminAction, signOutAdminAction };
