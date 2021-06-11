@@ -17,21 +17,6 @@ const conn = mongoose.connect(process.env.MONGODB_URI, {
 const questions = [
   {
     type: "input",
-    name: "firstName",
-    message: "Enter your first name ?",
-  },
-  {
-    type: "input",
-    name: "middleName",
-    message: "Enter your middle name* ?",
-  },
-  {
-    type: "input",
-    name: "lastName",
-    message: "Enter your last name ?",
-  },
-  {
-    type: "input",
     name: "email",
     message: "Enter your email* ?",
   },
@@ -56,10 +41,9 @@ program
   .alias("c")
   .description("Create admin.")
   .action(async () => {
-    const { firstName, middleName, lastName, email, password, confPassword } =
-      await inquirer.prompt(questions);
+    const { email, password, confPassword } = await inquirer.prompt(questions);
 
-    if (!middleName && !email && !password) {
+    if (!email && !password) {
       console.info("Please enter required fields.");
       (await conn).disconnect();
     } else if (password !== confPassword) {
@@ -68,9 +52,6 @@ program
     } else {
       try {
         const newAdmin = new Admin({
-          firstName,
-          middleName,
-          lastName,
           email,
           password,
         });

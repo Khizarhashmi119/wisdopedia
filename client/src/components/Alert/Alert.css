@@ -1,0 +1,29 @@
+.alert-box {
+  border-radius: 0.25rem;
+  box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
+  color: #fff;
+  margin-top: 1rem;
+  padding: 6% 5%;
+  position: relative;
+  text-align: center;
+  min-width: 300px;
+}
+
+.alert-box i {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 12px;
+}
+
+.error {
+  background-color: #dc3545;
+}
+
+.warn {
+  background-color: #e0aa00;
+}
+
+.success {
+  background-color: #28a745;
+}

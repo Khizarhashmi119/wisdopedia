@@ -29,6 +29,35 @@ const Quote = () => {
           <span className="quote-author">
             By : {quoteData.contents.quotes[0].author}
           </span>
+          <div
+            style={{
+              alignItems: "center",
+              display: "flex",
+              fontSize: "0.9em",
+              fontWeight: "bold",
+              justifyContent: "center",
+              marginTop: "1rem",
+              zIndex: 50,
+            }}
+          >
+            <img
+              src="https://theysaidso.com/branding/theysaidso.png"
+              height="20"
+              width="20"
+              alt="theysaidso.com"
+            />
+            <a
+              href="https://theysaidso.com"
+              title="Powered by quotes from theysaidso.com"
+              style={{
+                color: "#ccc",
+                marginLeft: "4px",
+                verticalAlign: "middle",
+              }}
+            >
+              They Said So®
+            </a>
+          </div>
         </div>
       ) : (
         <h4 className="loading-text">Loading...</h4>

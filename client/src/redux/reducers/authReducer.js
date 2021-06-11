@@ -1,20 +1,14 @@
 import * as authActionTypes from "../actionTypes/authActionTypes";
 
 const initState = {
-  token: null,
-  isAuthenticated: false,
+  token: localStorage.getItem("token"),
+  isAuthenticated: !!localStorage.getItem("token"),
   isLoading: false,
   errors: null,
 };
 
 const authReducer = (state = initState, action) => {
   switch (action.type) {
-    case authActionTypes.SET_TOKEN:
-      return {
-        ...state,
-        token: action.token,
-        isAuthenticated: true,
-      };
     case authActionTypes.SIGN_IN_ADMIN:
       return {
         ...state,

@@ -5,22 +5,6 @@ const uuid = require("uuid");
 
 const adminSchema = new mongoose.Schema(
   {
-    firstName: {
-      type: String,
-      trim: true,
-      maxlength: 32,
-    },
-    middleName: {
-      type: String,
-      required: true,
-      trim: true,
-      maxlength: 32,
-    },
-    lastName: {
-      type: String,
-      trim: true,
-      maxlength: 32,
-    },
     email: {
       type: String,
       required: true,
