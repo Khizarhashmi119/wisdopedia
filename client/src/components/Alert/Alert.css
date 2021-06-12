@@ -3,10 +3,10 @@
   box-shadow: -2px 7px 21px -9px rgba(0, 0, 0, 0.75);
   color: #fff;
   margin-top: 1rem;
-  padding: 6% 5%;
+  padding: 10% 5%;
   position: relative;
   text-align: center;
-  min-width: 300px;
+  min-width: 320px;
 }
 
 .alert-box i {

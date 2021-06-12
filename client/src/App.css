@@ -164,6 +164,16 @@ a {
   .footer-top-cols {
     text-align: center;
   }
+
+  .alerts {
+    right: 1rem;
+    bottom: 1rem;
+  }
+
+  .alert-box {
+    padding: 7% 5%;
+    width: 100%;
+  }
 }
 
 .navbar-active {

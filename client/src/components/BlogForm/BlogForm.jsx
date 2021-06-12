@@ -19,9 +19,10 @@ const BlogForm = ({ blog }) => {
     author: blog ? blog.author : "",
     image: null,
   });
-  const { categories, isLoading } = useSelector(
+  const { categories, isLoading: isCategoriesLoading } = useSelector(
     (state) => state.categoriesState
   );
+  const { isLoading: isBlogLoading } = useSelector((state) => state.blogsState);
   const dispatch = useDispatch();
   const { title, description, tags, body, author, checkedCategories, image } =
     blogFormData;
@@ -112,7 +113,7 @@ const BlogForm = ({ blog }) => {
             checkedCategories.length === 0
           }
         >
-          Publish
+          {isBlogLoading ? "Loading..." : "Publish"}
         </button>
       </div>
       <div className="input-container">
@@ -167,7 +168,7 @@ const BlogForm = ({ blog }) => {
       />
       <fieldset className="categories-container">
         <legend>Categories*</legend>
-        {!isLoading ? (
+        {!isCategoriesLoading ? (
           categories.length !== 0 ? (
             categories.map(({ _id, name }) => (
               <div className="category-input-container" key={_id}>

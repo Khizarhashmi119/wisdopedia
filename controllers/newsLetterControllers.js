@@ -17,8 +17,6 @@ const subscribeNewsLetter = async (req, res) => {
   const listId = process.env.LIST_ID;
   const apiKey = process.env.API_KEY;
 
-  console.log(email);
-
   const subscribingUser = {
     email,
   };

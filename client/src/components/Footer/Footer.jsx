@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { v4 } from "uuid";
 
+import Alerts from "../Alerts/Alerts";
 import * as alertActionTypes from "../../redux/actionTypes/alertActionTypes";
 
 import "./Footer.css";
@@ -133,6 +134,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
+      <Alerts />
     </footer>
   );
 };
